@@ -1,7 +1,13 @@
 import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
-import { useDerivedValue, Path, Skia, Group } from "@shopify/react-native-skia";
+import {
+  translate,
+  useDerivedValue,
+  Path,
+  Skia,
+  Group,
+} from "@shopify/react-native-skia";
 
-import { interpolatePaths } from "./Helpers";
+import { center, interpolatePaths } from "./Helpers";
 
 interface EyeProps {
   flip?: boolean;
@@ -46,15 +52,14 @@ export const Eye = ({ flip, progress }: EyeProps) => {
     [progress]
   );
   return (
-    <Group transform={[{ scaleX: flip ? -1 : 1 }]}>
-      <Path
-        path={path}
-        color="white"
-        style="stroke"
-        strokeJoin="round"
-        strokeCap="round"
-        strokeWidth={3}
-      />
+    <Group
+      transform={[
+        ...translate(center),
+        { translateY: -125 },
+        { scaleX: flip ? -1 : 1 },
+      ]}
+    >
+      <Path path={path} color="black" style="stroke" strokeWidth={4} />
     </Group>
   );
 };

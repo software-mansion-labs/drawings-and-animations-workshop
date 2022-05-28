@@ -8,7 +8,11 @@ import {
   Skia,
   clamp,
   Group,
+  translate,
+  vec,
+  sub,
 } from "@shopify/react-native-skia";
+import { Dimensions } from "react-native";
 
 import { Eye } from "./Eye";
 import { inputRange } from "./Helpers";
@@ -43,12 +47,8 @@ export const ShapeMorphing = () => {
       <Fill color={color} />
       <Slider x={x} />
       <Eye progress={progress} />
-      <Group transform={[{ translateX: 200 }]}>
-        <Eye progress={progress} flip />
-      </Group>
-      <Group transform={[{ translateX: 150 }, { translateY: 150 }]}>
-        <Mouth progress={progress} />
-      </Group>
+      <Eye progress={progress} flip />
+      <Mouth progress={progress} />
     </Canvas>
   );
 };

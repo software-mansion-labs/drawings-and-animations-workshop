@@ -1,7 +1,15 @@
+import {
+  Group,
+  sub,
+  translate,
+  vec,
+  Path,
+  Skia,
+  useDerivedValue,
+} from "@shopify/react-native-skia";
 import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
-import { Path, Skia, useDerivedValue } from "@shopify/react-native-skia";
 
-import { inputRange, interpolatePaths } from "./Helpers";
+import { center, inputRange, interpolatePaths } from "./Helpers";
 
 const angryPath = Skia.Path.Make();
 angryPath.moveTo(13, 36);
@@ -46,6 +54,10 @@ goodPath.cubicTo(
   16.8056066
 );
 
+const bounds = {
+  width: 117,
+  height: 46.45,
+};
 interface MouthProps {
   progress: SkiaReadonlyValue<number>;
 }
@@ -61,13 +73,13 @@ export const Mouth = ({ progress }: MouthProps) => {
     [progress]
   );
   return (
-    <Path
-      path={path}
-      color="white"
-      style="stroke"
-      strokeJoin="round"
-      strokeCap="round"
-      strokeWidth={3}
-    />
+    <Group
+      transform={[
+        { translateX: center.x - bounds.width / 2 },
+        { translateY: center.y - bounds.height / 2 },
+      ]}
+    >
+      <Path path={path} color="black" style="stroke" strokeWidth={4} />
+    </Group>
   );
 };

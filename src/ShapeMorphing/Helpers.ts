@@ -1,6 +1,12 @@
 import type { SkPath } from "@shopify/react-native-skia";
+import { vec } from "@shopify/react-native-skia";
+import { Dimensions } from "react-native";
+
+const { width, height } = Dimensions.get("window");
 
 export const inputRange = [0, 0.5, 1];
+
+export const center = vec(width / 2, height / 2);
 
 export const interpolatePaths = (
   value: number,
