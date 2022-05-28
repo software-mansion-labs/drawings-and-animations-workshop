@@ -6,6 +6,7 @@ import type { Routes } from "./src/Routes";
 import { Examples } from "./src/Examples";
 import { ReactLogo } from "./src/ReactLogo";
 import { SkiaLogo } from "./src/SkiaLogo/SkiaLogo";
+import { ShapeMorphing } from "./src/ShapeMorphing";
 
 const Stack = createNativeStackNavigator<Routes>();
 
@@ -16,6 +17,7 @@ function App() {
         <Stack.Screen name="Examples" component={Examples} />
         <Stack.Screen name="SkiaLogo" component={SkiaLogo} />
         <Stack.Screen name="ReactLogo" component={ReactLogo} />
+        <Stack.Screen name="ShapeMorphing" component={ShapeMorphing} />
       </Stack.Navigator>
     </NavigationContainer>
   );

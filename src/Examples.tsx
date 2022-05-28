@@ -20,6 +20,10 @@ export const examples = [
     screen: "SkiaLogo",
     title: "🎨 Skia Logo",
   },
+  {
+    screen: "ShapeMorphing",
+    title: "☺️ Shape Morphing",
+  },
 ] as const;
 
 const styles = StyleSheet.create({
