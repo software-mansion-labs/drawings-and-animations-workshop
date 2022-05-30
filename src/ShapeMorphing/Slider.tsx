@@ -1,6 +1,7 @@
 import { Dimensions } from "react-native";
-import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
+import type { SkiaReadonlyValue, SkiaValue } from "@shopify/react-native-skia";
 import {
+  useTouchHandler,
   rrect,
   rect,
   RoundedRect,
@@ -11,7 +12,8 @@ import {
   useDerivedValue,
 } from "@shopify/react-native-skia";
 
-const { width } = Dimensions.get("window");
+const { width, height } = Dimensions.get("window");
+const center = vec(width / 2, height / 2);
 export const CURSOR_SIZE = 40;
 export const PADDING = 32;
 export const SLIDER_WIDTH = width - 2 * PADDING;
@@ -23,7 +25,7 @@ interface SliderProps {
 export const Slider = ({ x }: SliderProps) => {
   const transform = useDerivedValue(() => [{ translateX: x.current }], [x]);
   return (
-    <Group>
+    <Group transform={[{ translateY: center.y + 100 }]}>
       <Line
         p1={vec(PADDING + CURSOR_SIZE / 2, CURSOR_SIZE / 2)}
         p2={vec(PADDING + SLIDER_WIDTH - CURSOR_SIZE / 2, CURSOR_SIZE / 2)}

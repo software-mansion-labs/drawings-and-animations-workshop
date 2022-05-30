@@ -1,13 +1,16 @@
 import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
 import {
+  interpolateVector,
   translate,
   useDerivedValue,
   Path,
   Skia,
   Group,
+  Circle,
+  center as getCenter,
 } from "@shopify/react-native-skia";
 
-import { center, interpolatePaths } from "./Helpers";
+import { center, interpolatePaths, inputRange } from "./Helpers";
 
 interface EyeProps {
   flip?: boolean;
@@ -41,14 +44,22 @@ goodPath.cubicTo(69, 59.91, 58.25, 72, 45, 72);
 goodPath.cubicTo(31.75, 72, 21, 59.91, 21, 45);
 goodPath.close();
 
+const c1 = getCenter(angryPath.computeTightBounds());
+const c2 = getCenter(normalPath.computeTightBounds());
+const c3 = getCenter(angryPath.computeTightBounds());
+
 export const Eye = ({ flip, progress }: EyeProps) => {
   const path = useDerivedValue(
     () =>
-      interpolatePaths(
-        progress.current,
-        [0, 0.5, 1],
-        [angryPath, normalPath, goodPath]
-      ),
+      interpolatePaths(progress.current, inputRange, [
+        angryPath,
+        normalPath,
+        goodPath,
+      ]),
+    [progress]
+  );
+  const c = useDerivedValue(
+    () => interpolateVector(progress.current, inputRange, [c1, c2, c3]),
     [progress]
   );
   return (
@@ -60,6 +71,7 @@ export const Eye = ({ flip, progress }: EyeProps) => {
       ]}
     >
       <Path path={path} color="black" style="stroke" strokeWidth={4} />
+      <Circle c={c} r={5} color="black" />
     </Group>
   );
 };
