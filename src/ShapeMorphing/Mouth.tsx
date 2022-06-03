@@ -1,12 +1,4 @@
-import {
-  Group,
-  sub,
-  translate,
-  vec,
-  Path,
-  Skia,
-  useDerivedValue,
-} from "@shopify/react-native-skia";
+import { Group, Path, Skia, useDerivedValue } from "@shopify/react-native-skia";
 import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
 
 import { center, inputRange, interpolatePaths } from "./Helpers";
@@ -54,10 +46,8 @@ goodPath.cubicTo(
   16.8056066
 );
 
-const bounds = {
-  width: 117,
-  height: 46.45,
-};
+const bounds = normalPath.computeTightBounds();
+
 interface MouthProps {
   progress: SkiaReadonlyValue<number>;
 }

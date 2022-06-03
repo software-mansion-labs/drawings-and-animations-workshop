@@ -1,7 +1,6 @@
 import { Dimensions } from "react-native";
-import type { SkiaReadonlyValue, SkiaValue } from "@shopify/react-native-skia";
+import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
 import {
-  useTouchHandler,
   rrect,
   rect,
   RoundedRect,

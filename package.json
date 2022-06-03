@@ -14,7 +14,7 @@
     "@react-navigation/native": "^6.0.10",
     "@react-navigation/native-stack": "^6.6.2",
     "@react-navigation/stack": "^6.2.1",
-    "@shopify/react-native-skia": "^0.1.128",
+    "@shopify/react-native-skia": "^0.1.130",
     "adaptive-bezier-curve": "^1.0.3",
     "expo": "~45.0.0",
     "expo-dev-client": "~0.9.6",
@@ -30,14 +30,14 @@
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
-    "@types/react": "~17.0.21",
+    "@types/react": "17.0.39",
     "@types/react-native": "0.67.7",
     "eslint": "^7.9.0",
     "eslint-config-react-native-wcandillon": "^3.8.0",
     "typescript": "~4.3.5"
   },
   "resolutions": {
-    "@types/react": "18.0.9"
+    "@types/react": "17.0.30"
   },
   "private": true
 }

@@ -6,11 +6,6 @@ import {
   useDerivedValue,
   Skia,
   clamp,
-  Group,
-  translate,
-  vec,
-  sub,
-  rect,
   useTouchHandler,
 } from "@shopify/react-native-skia";
 
@@ -27,10 +22,6 @@ const end = PADDING + SLIDER_WIDTH - CURSOR_SIZE;
 export const ShapeMorphing = () => {
   const offset = useValue(0);
   const x = useValue(PADDING);
-  const rct = useDerivedValue(
-    () => rect(x.current, 0, CURSOR_SIZE, CURSOR_SIZE),
-    [x]
-  );
   const onTouch = useTouchHandler({
     onStart: (pt) => {
       offset.current = x.current - pt.x;
