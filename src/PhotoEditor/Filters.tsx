@@ -1,4 +1,10 @@
-import type { SkImage, Vector, SkRect } from "@shopify/react-native-skia";
+/* eslint-disable prefer-destructuring */
+import type {
+  SkImage,
+  Vector,
+  SkRect,
+  SkiaMutableValue,
+} from "@shopify/react-native-skia";
 import {
   ImageShader,
   RoundedRect,
@@ -7,7 +13,6 @@ import {
   rrect,
   ColorMatrix,
   Group,
-  Image,
 } from "@shopify/react-native-skia";
 import React from "react";
 import { Dimensions } from "react-native";
@@ -15,21 +20,46 @@ import { Dimensions } from "react-native";
 const { width, height } = Dimensions.get("window");
 const size = width / 4;
 
-export const contains = (pt: Vector, rct: SkRect) =>
+const contains = (pt: Vector, rct: SkRect) =>
   pt.x >= rct.x &&
   pt.x <= rct.x + rct.width &&
   pt.y >= rct.y &&
   pt.y <= rct.y + rct.height;
-export const rects = new Array(4)
+const rects = new Array(4)
   .fill(0)
   .map((_, i) => rect(size * i, height - size - 125, size, size));
+export const noFilter = [
+  1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0,
+];
+const blackAndWhite = [
+  0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0,
+];
+const milk = [0, 1.0, 0, 0, 0, 0, 1.0, 0, 0, 0, 0, 0.6, 1, 0, 0, 0, 0, 0, 1, 0];
+const coldLife = [
+  1, 0, 0, 0, 0, 0, 1, 0, 0, 0, -0.2, 0.2, 0.1, 0.4, 0, 0, 0, 0, 1, 0,
+];
+export const filters = [noFilter, blackAndWhite, milk, coldLife] as const;
+
+export const selectFilter = (
+  matrix: SkiaMutableValue<number[]>,
+  pt: Vector
+) => {
+  if (contains(pt, rects[0])) {
+    matrix.current = filters[0];
+  } else if (contains(pt, rects[1])) {
+    matrix.current = filters[1];
+  } else if (contains(pt, rects[2])) {
+    matrix.current = filters[2];
+  } else if (contains(pt, rects[3])) {
+    matrix.current = filters[3];
+  }
+};
 
 interface FiltersProps {
   image: SkImage;
-  filters: readonly [number[], number[], number[], number[]];
 }
 
-export const Filters = ({ image, filters }: FiltersProps) => {
+export const Filters = ({ image }: FiltersProps) => {
   return (
     <>
       {filters.map((filter, i) => {
