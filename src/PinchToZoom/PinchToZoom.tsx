@@ -15,7 +15,7 @@ import {
 } from "@shopify/react-native-skia";
 import { Dimensions, View } from "react-native";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
-import { useSharedValue } from "react-native-reanimated";
+import { useSharedValue, withTiming } from "react-native-reanimated";
 
 const zurich = require("./assets/zurich.jpg");
 const { width, height } = Dimensions.get("window");
@@ -23,13 +23,6 @@ const center = vec(width / 2, height / 2);
 export const assets = [zurich];
 
 export const PinchToZoom = () => {
-  // const pan = Gesture.Pan()
-  //   .onStart(() => {})
-  //   .onChange(({ translationX, translationY }) => {
-
-  //   });
-  const offsetX = useSharedValue(0);
-  const offsetY = useSharedValue(0);
   const focalX = useSharedValue(0);
   const focalY = useSharedValue(0);
   const scale = useSharedValue(1);
@@ -38,23 +31,34 @@ export const PinchToZoom = () => {
   const transform = useValue<Transforms2d>([]);
 
   const pinch = Gesture.Pinch()
-    .onStart(() => {
-      offsetScale.value = scale.value;
+    .onStart((event) => {
+      focalX.value = event.focalX;
+      focalY.value = event.focalY;
     })
     .onChange((event) => {
       scale.value = event.scale;
+    })
+    .onEnd(() => {
+      scale.value = withTiming(1);
+      focalX.value = withTiming(0);
+      focalY.value = withTiming(0);
     });
   const gesture = pinch; //Gesture.Race(pan, pinch);
   const image = useImage(zurich);
-  useSharedValueEffect(() => {
-    transform.current = [
-      { translateX: center.x },
-      { translateY: center.y },
-      { scale: offsetScale.value * scale.value },
-      { translateX: -center.x },
-      { translateY: -center.y },
-    ];
-  }, scale);
+  useSharedValueEffect(
+    () => {
+      transform.current = [
+        { translateX: focalX.value },
+        { translateY: focalY.value },
+        { scale: offsetScale.value * scale.value },
+        { translateX: -focalX.value },
+        { translateY: -focalY.value },
+      ];
+    },
+    scale,
+    focalX,
+    focalY
+  );
   if (!image) {
     return null;
   }
