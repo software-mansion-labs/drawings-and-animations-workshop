@@ -4,4 +4,5 @@ export type Routes = {
   SkiaLogo: undefined;
   ShapeMorphing: undefined;
   PinchToZoom: undefined;
+  Drawings: undefined;
 };

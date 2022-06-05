@@ -1,15 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
 import type { Transforms2d } from "@shopify/react-native-skia";
 import {
-  vec,
-  useCanvas,
-  useDerivedValue,
   Canvas,
-  Fill,
   useImage,
   Image,
   useSharedValueEffect,
-  Skia,
   useValue,
   Group,
 } from "@shopify/react-native-skia";
@@ -19,7 +14,7 @@ import { useSharedValue, withTiming } from "react-native-reanimated";
 
 const zurich = require("./assets/zurich.jpg");
 const { width, height } = Dimensions.get("window");
-const center = vec(width / 2, height / 2);
+//const center = vec(width / 2, height / 2);
 export const assets = [zurich];
 
 export const PinchToZoom = () => {

@@ -1,5 +1,5 @@
 import { Group, Path, Skia, useDerivedValue } from "@shopify/react-native-skia";
-import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
+import type { SkiaValue } from "@shopify/react-native-skia";
 
 import { center, inputRange, interpolatePaths } from "./Helpers";
 
@@ -49,7 +49,7 @@ goodPath.cubicTo(
 const bounds = normalPath.computeTightBounds();
 
 interface MouthProps {
-  progress: SkiaReadonlyValue<number>;
+  progress: SkiaValue<number>;
 }
 
 export const Mouth = ({ progress }: MouthProps) => {

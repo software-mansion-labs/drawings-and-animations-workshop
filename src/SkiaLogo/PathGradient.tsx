@@ -1,8 +1,4 @@
-import type {
-  SkPath,
-  SkiaReadonlyValue,
-  SkPaint,
-} from "@shopify/react-native-skia";
+import type { SkPath, SkiaValue, SkPaint } from "@shopify/react-native-skia";
 import {
   interpolateColors,
   dist,
@@ -30,7 +26,7 @@ interface Line {
 interface PathGradientProps {
   path: SkPath;
   colors: string[];
-  progress: SkiaReadonlyValue<number>;
+  progress: SkiaValue<number>;
   strokeWidth: number;
 }
 

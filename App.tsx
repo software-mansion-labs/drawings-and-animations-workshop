@@ -7,6 +7,7 @@ import { ReactLogo } from "./src/ReactLogo";
 import { SkiaLogo } from "./src/SkiaLogo/SkiaLogo";
 import { ShapeMorphing } from "./src/ShapeMorphing";
 import { PinchToZoom, assets } from "./src/PinchToZoom";
+import { Drawings } from "./src/Drawings";
 import { LoadAssets } from "./src/components/LoadAssets";
 
 const Stack = createNativeStackNavigator<Routes>();
@@ -24,6 +25,7 @@ function App() {
           component={PinchToZoom}
           options={{ header: () => null }}
         />
+        <Stack.Screen name="Drawings" component={Drawings} />
       </Stack.Navigator>
     </LoadAssets>
   );

@@ -1,5 +1,5 @@
 import { Dimensions } from "react-native";
-import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
+import type { SkiaValue } from "@shopify/react-native-skia";
 import {
   rrect,
   rect,
@@ -18,7 +18,7 @@ export const PADDING = 32;
 export const SLIDER_WIDTH = width - 2 * PADDING;
 
 interface SliderProps {
-  x: SkiaReadonlyValue<number>;
+  x: SkiaValue<number>;
 }
 
 export const Slider = ({ x }: SliderProps) => {

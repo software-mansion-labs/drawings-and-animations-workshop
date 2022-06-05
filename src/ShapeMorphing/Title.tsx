@@ -1,4 +1,4 @@
-import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
+import type { SkiaValue } from "@shopify/react-native-skia";
 import {
   runTiming,
   useValueEffect,
@@ -23,7 +23,7 @@ enum State {
 }
 
 interface TitleProps {
-  progress: SkiaReadonlyValue<number>;
+  progress: SkiaValue<number>;
 }
 
 export const Title = ({ progress }: TitleProps) => {

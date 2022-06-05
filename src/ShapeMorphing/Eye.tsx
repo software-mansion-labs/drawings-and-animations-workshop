@@ -1,4 +1,4 @@
-import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
+import type { SkiaValue } from "@shopify/react-native-skia";
 import {
   interpolateVector,
   translate,
@@ -14,7 +14,7 @@ import { center, interpolatePaths, inputRange } from "./Helpers";
 
 interface EyeProps {
   flip?: boolean;
-  progress: SkiaReadonlyValue<number>;
+  progress: SkiaValue<number>;
 }
 
 const angryPath = Skia.Path.Make();

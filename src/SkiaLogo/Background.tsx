@@ -1,4 +1,4 @@
-import type { SkiaReadonlyValue } from "@shopify/react-native-skia";
+import type { SkiaValue } from "@shopify/react-native-skia";
 import {
   Fill,
   RadialGradient,
@@ -14,7 +14,7 @@ const c = vec(width / 2, height / 2);
 const r = width / 2;
 
 interface BackgroundProps {
-  progress: SkiaReadonlyValue<number>;
+  progress: SkiaValue<number>;
 }
 
 export const Background = ({ progress }: BackgroundProps) => {

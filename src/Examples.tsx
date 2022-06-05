@@ -28,6 +28,10 @@ export const examples = [
     screen: "PinchToZoom",
     title: "🔍 Pinch to Zoom",
   },
+  {
+    screen: "Drawings",
+    title: "🖌 Drawings",
+  },
 ] as const;
 
 const styles = StyleSheet.create({
