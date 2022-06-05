@@ -19,7 +19,11 @@ function App() {
         <Stack.Screen name="SkiaLogo" component={SkiaLogo} />
         <Stack.Screen name="ReactLogo" component={ReactLogo} />
         <Stack.Screen name="ShapeMorphing" component={ShapeMorphing} />
-        <Stack.Screen name="PinchToZoom" component={PinchToZoom} />
+        <Stack.Screen
+          name="PinchToZoom"
+          component={PinchToZoom}
+          options={{ header: () => null }}
+        />
       </Stack.Navigator>
     </LoadAssets>
   );
