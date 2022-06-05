@@ -6,11 +6,17 @@ import { Examples } from "./src/Examples";
 import { ReactLogo } from "./src/ReactLogo";
 import { SkiaLogo } from "./src/SkiaLogo/SkiaLogo";
 import { ShapeMorphing } from "./src/ShapeMorphing";
-import { PinchToZoom, assets } from "./src/PinchToZoom";
+import { PinchToZoom } from "./src/PinchToZoom";
 import { Drawings } from "./src/Drawings";
+import { PhotoEditor } from "./src/PhotoEditor";
 import { LoadAssets } from "./src/components/LoadAssets";
 
 const Stack = createNativeStackNavigator<Routes>();
+const assets = [
+  require("./src/assets/zurich.jpg"),
+  require("./src/assets/zurich2.jpg"),
+  require("./src/assets/zurich3.jpg"),
+];
 
 function App() {
   return (
@@ -26,6 +32,7 @@ function App() {
           options={{ header: () => null }}
         />
         <Stack.Screen name="Drawings" component={Drawings} />
+        <Stack.Screen name="PhotoEditor" component={PhotoEditor} />
       </Stack.Navigator>
     </LoadAssets>
   );

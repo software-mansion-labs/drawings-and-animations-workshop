@@ -32,6 +32,10 @@ export const examples = [
     screen: "Drawings",
     title: "🖌 Drawings",
   },
+  {
+    screen: "PhotoEditor",
+    title: "📷 Photo Editor",
+  },
 ] as const;
 
 const styles = StyleSheet.create({

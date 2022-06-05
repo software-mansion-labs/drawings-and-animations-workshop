@@ -12,16 +12,14 @@ import { Dimensions, View } from "react-native";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import { useSharedValue, withTiming } from "react-native-reanimated";
 
-const zurich = require("./assets/zurich.jpg");
+const zurich = require("../assets/zurich.jpg");
 const { width, height } = Dimensions.get("window");
 //const center = vec(width / 2, height / 2);
-export const assets = [zurich];
 
 export const PinchToZoom = () => {
   const focalX = useSharedValue(0);
   const focalY = useSharedValue(0);
   const scale = useSharedValue(1);
-  const offsetScale = useSharedValue(1);
 
   const transform = useValue<Transforms2d>([]);
 
@@ -38,14 +36,14 @@ export const PinchToZoom = () => {
       focalX.value = withTiming(0);
       focalY.value = withTiming(0);
     });
-  const gesture = pinch; //Gesture.Race(pan, pinch);
+  const gesture = pinch;
   const image = useImage(zurich);
   useSharedValueEffect(
     () => {
       transform.current = [
         { translateX: focalX.value },
         { translateY: focalY.value },
-        { scale: offsetScale.value * scale.value },
+        { scale: scale.value },
         { translateX: -focalX.value },
         { translateY: -focalY.value },
       ];

@@ -5,4 +5,5 @@ export type Routes = {
   ShapeMorphing: undefined;
   PinchToZoom: undefined;
   Drawings: undefined;
+  PhotoEditor: undefined;
 };
