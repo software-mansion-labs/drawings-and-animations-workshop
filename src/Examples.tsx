@@ -24,6 +24,10 @@ export const examples = [
     screen: "ShapeMorphing",
     title: "☺️ Shape Morphing",
   },
+  {
+    screen: "PinchToZoom",
+    title: "🔍 Pinch to Zoom",
+  },
 ] as const;
 
 const styles = StyleSheet.create({

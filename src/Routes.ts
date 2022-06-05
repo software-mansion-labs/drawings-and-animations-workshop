@@ -3,4 +3,5 @@ export type Routes = {
   ReactLogo: undefined;
   SkiaLogo: undefined;
   ShapeMorphing: undefined;
+  PinchToZoom: undefined;
 };
