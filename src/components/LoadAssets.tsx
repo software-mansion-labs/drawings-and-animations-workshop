@@ -37,10 +37,10 @@ interface LoadAssetsProps {
   children: ReactElement | ReactElement[];
 }
 
-export const LoadAssets = ({ assets, fonts, children }: LoadAssetsProps) => {
+export const LoadAssets = ({ children }: LoadAssetsProps) => {
   const [isNavigationReady, setIsNavigationReady] = useState(!__DEV__);
   const [initialState, setInitialState] = useState<InitialState | undefined>();
-  const ready = useLoadAssets(assets || [], fonts || {});
+  // const ready = useLoadAssets(assets || [], fonts || {});
   useEffect(() => {
     const restoreState = async () => {
       try {
@@ -65,9 +65,9 @@ export const LoadAssets = ({ assets, fonts, children }: LoadAssetsProps) => {
     []
   );
 
-  if (!ready) {
-    return <View style={{ flex: 1, backgroundColor: "black" }} />;
-  }
+  // if (!ready) {
+  //   return <View style={{ flex: 1, backgroundColor: "black" }} />;
+  // }
 
   return (
     <NavigationContainer {...{ onStateChange, initialState }}>
