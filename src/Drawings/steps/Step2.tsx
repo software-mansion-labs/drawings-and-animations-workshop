@@ -10,21 +10,16 @@ import {
 } from "@shopify/react-native-skia";
 import { Dimensions } from "react-native";
 
-const zurich = require("../assets/zurich.jpg");
+const zurich = require("../../assets/zurich.jpg");
 const { width, height } = Dimensions.get("window");
 export const Drawings = () => {
-  const closed = useValue(false);
   const path = useValue(Skia.Path.Make());
   const onTouch = useTouchHandler({
     onStart: ({ x, y }) => {
-      closed.current = true;
       path.current.moveTo(x, y);
     },
     onActive: ({ x, y }) => {
       path.current.lineTo(x, y);
-    },
-    onEnd: () => {
-      closed.current = false;
     },
   });
 
