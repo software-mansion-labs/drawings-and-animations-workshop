@@ -14,12 +14,12 @@ const c = vec(width / 2, height / 2);
 const r = width / 2;
 
 interface BackgroundProps {
-  progress: SkiaValue<number>;
+  progress?: SkiaValue<number>;
 }
 
 export const Background = ({ progress }: BackgroundProps) => {
   const colors = useDerivedValue(
-    () => [mixColors(progress.current, "#040404", "#303030"), "#040404"],
+    () => [mixColors(progress?.current ?? 1, "#040404", "#303030"), "#040404"],
     [progress]
   );
   return (

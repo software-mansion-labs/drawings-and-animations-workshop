@@ -22,17 +22,44 @@ const path = Skia.Path.MakeFromSVGString(
 const PADDING = 32;
 
 export const SkiaLogo = () => {
+  const progress = useTiming(
+    { to: 1, loop: true },
+    { duration: 3000, easing: Easing.bezier(0.65, 0, 0.35, 1) }
+  );
+
   return (
     <Canvas style={{ flex: 1 }}>
       <Background />
-      <Path
-        path={path}
-        style="stroke"
-        strokeWidth={116}
-        strokeCap="round"
-        strokeJoin="round"
-        color="white"
-      />
+      <FitBox
+        src={rect(0, 0, 2139, 928)}
+        dst={rect(PADDING, PADDING, width - PADDING * 2, height - PADDING * 2)}
+      >
+        <LinearGradient
+          start={path.getPoint(0)}
+          end={path.getLastPt()}
+          colors={[
+            "#3FCEBC",
+            "#3CBCEB",
+            "#5F96E7",
+            "#816FE3",
+            "#9F5EE2",
+            "#DE589F",
+            "#FF645E",
+            "#FDA859",
+            "#FAEC54",
+            "#9EE671",
+            "#41E08D",
+          ]}
+        />
+        <Path
+          path={path}
+          end={progress}
+          style="stroke"
+          strokeWidth={116}
+          strokeCap="round"
+          strokeJoin="round"
+        />
+      </FitBox>
     </Canvas>
   );
 };

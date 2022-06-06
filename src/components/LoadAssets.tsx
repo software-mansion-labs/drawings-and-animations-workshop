@@ -6,6 +6,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar } from "expo-status-bar";
 import * as Font from "expo-font";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { View } from "react-native";
 
 const NAVIGATION_STATE_KEY = "NAVIGATION_STATE_KEY";
 
@@ -65,7 +66,7 @@ export const LoadAssets = ({ assets, fonts, children }: LoadAssetsProps) => {
   );
 
   if (!ready) {
-    return null;
+    return <View style={{ flex: 1, backgroundColor: "black" }} />;
   }
 
   return (
