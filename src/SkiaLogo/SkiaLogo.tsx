@@ -20,6 +20,8 @@ const path = Skia.Path.MakeFromSVGString(
 )!;
 
 const PADDING = 32;
+const src = rect(0, 0, 2139, 928);
+const dst = rect(PADDING, PADDING, width - PADDING * 2, height - PADDING * 2);
 
 export const SkiaLogo = () => {
   return (

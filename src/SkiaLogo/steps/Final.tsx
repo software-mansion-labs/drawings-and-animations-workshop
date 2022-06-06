@@ -26,7 +26,6 @@ export const SkiaLogo = () => {
     { to: 1, loop: true },
     { duration: 3000, easing: Easing.bezier(0.65, 0, 0.35, 1) }
   );
-
   return (
     <Canvas style={{ flex: 1 }}>
       <Background />
