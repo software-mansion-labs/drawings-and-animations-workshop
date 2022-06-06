@@ -15,7 +15,7 @@ import { Dimensions, View } from "react-native";
 import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import { useSharedValue, withTiming } from "react-native-reanimated";
 
-const zurich = require("../assets/zurich.jpg");
+const zurich = require("../../assets/zurich.jpg");
 const { width, height } = Dimensions.get("window");
 //const center = vec(width / 2, height / 2);
 

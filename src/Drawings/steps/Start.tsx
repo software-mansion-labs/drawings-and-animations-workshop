@@ -10,7 +10,7 @@ import {
 } from "@shopify/react-native-skia";
 import { Dimensions } from "react-native";
 
-const zurich = require("../assets/zurich.jpg");
+const zurich = require("../../assets/zurich.jpg");
 const { width, height } = Dimensions.get("window");
 export const Drawings = () => {
   const path = useValue(Skia.Path.Make());

@@ -13,11 +13,7 @@ import { PhotoEditor } from './src/PhotoEditor';
 import { LoadAssets } from './src/components/LoadAssets';
 
 const Stack = createNativeStackNavigator<Routes>();
-const assets = [
-  require('./src/assets/zurich.jpg'),
-  require('./src/assets/zurich2.jpg'),
-  require('./src/assets/zurich3.jpg'),
-];
+const assets: number[] = [];
 
 function App() {
   return (

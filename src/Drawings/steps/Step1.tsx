@@ -14,13 +14,18 @@ const zurich = require("../assets/zurich.jpg");
 const { width, height } = Dimensions.get("window");
 export const Drawings = () => {
   const path = useValue(Skia.Path.Make());
+  const onTouch = useTouchHandler({
+    onActive: ({ x, y }) => {
+      path.current.lineTo(x, y);
+    },
+  });
 
   const image = useImage(zurich);
   if (!image) {
     return null;
   }
   return (
-    <Canvas style={{ flex: 1 }}>
+    <Canvas style={{ flex: 1 }} onTouch={onTouch}>
       <Image
         x={0}
         y={0}

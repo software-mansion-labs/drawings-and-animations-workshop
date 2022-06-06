@@ -13,14 +13,26 @@ import { Dimensions } from "react-native";
 const zurich = require("../assets/zurich.jpg");
 const { width, height } = Dimensions.get("window");
 export const Drawings = () => {
+  // viewBox="0 0 544 450"
   const path = useValue(Skia.Path.Make());
+  const onTouch = useTouchHandler({
+    onStart: ({ x, y }) => {
+      path.current.moveTo(x, y);
+    },
+    onActive: ({ x, y }) => {
+      const lastPt = path.current.getLastPt();
+      const xMid = (lastPt.x + x) / 2;
+      const yMid = (lastPt.y + y) / 2;
+      path.current.quadTo(lastPt.x, lastPt.y, xMid, yMid);
+    },
+  });
 
   const image = useImage(zurich);
   if (!image) {
     return null;
   }
   return (
-    <Canvas style={{ flex: 1 }}>
+    <Canvas style={{ flex: 1 }} onTouch={onTouch}>
       <Image
         x={0}
         y={0}

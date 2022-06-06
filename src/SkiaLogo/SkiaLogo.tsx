@@ -11,7 +11,7 @@ import {
 import React from "react";
 import { Dimensions } from "react-native";
 
-import { Background } from "../Background";
+import { Background } from "./Background";
 
 const { width, height } = Dimensions.get("window");
 const path = Skia.Path.MakeFromSVGString(
