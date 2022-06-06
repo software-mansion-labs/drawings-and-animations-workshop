@@ -5,7 +5,11 @@
   "build": {
     "development": {
       "developmentClient": true,
-      "distribution": "internal"
+      "distribution": "internal",
+      "ios": {
+        "enterpriseProvisioning": "universal",
+        "simulator": true
+      }
     },
     "simulator": {
       "developmentClient": true,

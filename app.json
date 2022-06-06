@@ -14,19 +14,17 @@
     "updates": {
       "fallbackToCacheTimeout": 0
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.wcandillon.appjsworkshop"
+      "bundleIdentifier": "co.appjs.workshop22"
     },
     "android": {
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"
       },
-      "package": "com.wcandillon.appjsworkshop"
+      "package": "co.appjs.workshop22"
     },
     "web": {
       "favicon": "./assets/favicon.png"
