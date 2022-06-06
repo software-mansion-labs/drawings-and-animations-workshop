@@ -25,15 +25,27 @@ const center = vec(width / 2, height / 2);
 const r = 0.75 * PADDING;
 // Rectangle to draw the oval in
 const rct = rect(center.x - rx, center.y - ry, rx * 2, ry * 2);
+// Stroke width of the oval
+const strokeWidth = r;
 // Some colors
 const c1 = "#3884FF";
 const c2 = "#51D3ED";
-const strokeWidth = r;
 
 export const ReactLogo = () => {
   return (
     <Canvas style={{ flex: 1 }}>
       <Fill color="white" />
+      <Circle c={center} color={c1} r={r} />
+      <Oval rect={rct} color={c1} style="stroke" strokeWidth={strokeWidth} />
+      <Group>
+        <Oval rect={rct} color={c1} style="stroke" strokeWidth={strokeWidth} />
+      </Group>
+      <Group transform={[{ rotate: -Math.PI / 3 }]} origin={center}>
+        <Oval rect={rct} color={c1} style="stroke" strokeWidth={strokeWidth} />
+      </Group>
+      <Group transform={[{ rotate: Math.PI / 3 }]} origin={center}>
+        <Oval rect={rct} color={c1} style="stroke" strokeWidth={strokeWidth} />
+      </Group>
     </Canvas>
   );
 };

@@ -21,10 +21,6 @@ export const examples = [
     title: "🎨 Skia Logo",
   },
   {
-    screen: "ShapeMorphing",
-    title: "☺️ Shape Morphing",
-  },
-  {
     screen: "PinchToZoom",
     title: "🔍 Pinch to Zoom",
   },
@@ -35,6 +31,10 @@ export const examples = [
   {
     screen: "PhotoEditor",
     title: "📷 Photo Editor",
+  },
+  {
+    screen: "ShapeMorphing",
+    title: "☺️ Shape Morphing",
   },
 ] as const;
 
