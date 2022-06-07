@@ -1,9 +1,8 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Icon from '@expo/vector-icons/MaterialIcons';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-  withDelay,
   withSpring,
   withTiming,
 } from 'react-native-reanimated';
@@ -17,15 +16,14 @@ const WIDTH = 50;
 
 function Sticker({ iconName, color }: { iconName: string; color: ColorValue }) {
   const tap = Gesture.Tap().onEnd(() => {
-    console.log('Do nothing here');
+    console.log('Do nothing yet');
   });
   const scale = useSharedValue(1);
-  const longPress = Gesture.Tap()
-    .maxDuration(1e8)
-    .onBegin(() => {
-      scale.value = withDelay(50, withTiming(3, { duration: 2000 }));
+  const longPress = Gesture.LongPress()
+    .onStart(() => {
+      scale.value = withTiming(3, { duration: 2000 });
     })
-    .onFinalize(() => {
+    .onEnd(() => {
       scale.value = withSpring(1);
     });
   const styles = useAnimatedStyle(() => {
