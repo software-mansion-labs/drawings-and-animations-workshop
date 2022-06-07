@@ -8,20 +8,10 @@ import { CenterScreen } from '../components/CenterScreen';
 import { Pressable } from 'react-native';
 
 function Heart() {
-  const scale = useSharedValue(1);
-  const styles = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: scale.value }],
-    };
-  });
-
   return (
-    <Pressable
-      onPress={() => {
-        scale.value = withTiming(scale.value + 0.5);
-      }}>
+    <Pressable onPress={() => {}}>
       <Animated.View
-        style={[{ width: 50, height: 50, backgroundColor: '#ffaaa8' }, styles]}
+        style={[{ width: 50, height: 50, backgroundColor: '#ffaaa8' }]}
       />
     </Pressable>
   );
