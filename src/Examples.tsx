@@ -17,6 +17,10 @@ export const examples = [
     title: '😲 Animated Reactions',
   },
   {
+    screen: 'GestureBasedPicker',
+    title: '🤌 Gesture-based Picker',
+  },
+  {
     screen: 'ReactLogo',
     title: '⚛️ React Logo',
   },
@@ -35,6 +39,10 @@ export const examples = [
   {
     screen: 'PhotoEditor',
     title: '📷 Photo Editor',
+  },
+  {
+    screen: 'Stickers',
+    title: '🤳 Stickers',
   },
   {
     screen: 'ShapeMorphing',

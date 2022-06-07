@@ -7,8 +7,7 @@
       "developmentClient": true,
       "distribution": "internal",
       "ios": {
-        "enterpriseProvisioning": "universal",
-        "simulator": true
+        "enterpriseProvisioning": "universal"
       }
     },
     "simulator": {
