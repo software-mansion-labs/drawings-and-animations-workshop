@@ -11,7 +11,11 @@ import {
 import { Dimensions, View } from 'react-native';
 import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import { useSharedValue } from 'react-native-reanimated';
-import { createIdentityMatrix, scale3d, toSkMatrix } from './matrixMath';
+import {
+  createIdentityMatrix,
+  scale3d,
+  toSkMatrix,
+} from '../components/matrixMath';
 
 const zurich = require('../assets/zurich.jpg');
 const { width, height } = Dimensions.get('window');
