@@ -1,4 +1,6 @@
-# Drawings, gestures, and animations workshop – App.js Conference 2022
+# Dragging, rotating, and pinchin + custom Layout Animation combo
+
+In this section we build a "canvas" canvas component, where stickers can be added, moved, and rotated.
 
 ## Step 1 – Building canvas
 
@@ -372,9 +374,31 @@ function moveInFrom({ x, y, width, height }) {
 }
 ```
 
+We can now use this animation for our new component that we add to the items state array:
+
+```js
+const addItem = (icon: string, color: ColorValue, frame: Frame) => {
+  setItems([
+    ...items,
+    <AnimatedIcon
+      name={icon}
+      color={color}
+      size={frame.width}
+      entering={moveInFrom(frame)}
+    />,
+  ]);
+};
+```
+
 </details></br>
 
 <details>
 <summary><b>[BONUS 1]</b> Make the slide-in animation go along some curve and not just along the straight path</summary>
+
+😈
+
 </details></br>
-````
+
+## Next step
+
+**Go to: [Drawings – React Logo](../ReactLogo/)**
