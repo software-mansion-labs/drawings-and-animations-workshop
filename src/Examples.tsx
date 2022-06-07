@@ -45,10 +45,6 @@ export const examples = [
     title: '📷 Photo Editor',
   },
   {
-    screen: 'Stickers',
-    title: '🤳 Stickers',
-  },
-  {
     screen: 'ShapeMorphing',
     title: '☺️ Shape Morphing',
   },
