@@ -43,6 +43,8 @@ Follow one of the sections below for detailed instructions.
 
 1. Scan the QR code below with your iOS phone:
 
+![qrcode(2)](https://user-images.githubusercontent.com/726445/172497059-98c09c79-c55b-49f7-b63d-3b3c93841c51.png)
+
 2. Confirm when propted whether you want to install `appjs-workshop` app
 3. After installation is completed navigate to "Settings" > "General" > "VPN & Device Management" section
 4. Tap "650 INDUSTRIES INC." record in the "ENTERPRISE APP" section
