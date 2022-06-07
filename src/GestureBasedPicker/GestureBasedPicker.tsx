@@ -3,6 +3,7 @@ import Icon from '@expo/vector-icons/MaterialIcons';
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
+  withSpring,
 } from 'react-native-reanimated';
 import { CenterScreen } from '../components/CenterScreen';
 import { Pressable, View } from 'react-native';
@@ -29,11 +30,28 @@ function Sticker({ iconName }: { iconName: string }) {
   );
 }
 
+const STICKERS_COUNT = 4;
+
+function snapPoint(x: number) {
+  'worklet';
+  const position = Math.max(
+    -STICKERS_COUNT + 1,
+    Math.min(0, Math.round(x / WIDTH))
+  );
+  return position * WIDTH;
+}
+
 function Toolbar() {
   const offsetY = useSharedValue(0);
-  const pan = Gesture.Pan().onChange((e) => {
-    offsetY.value += e.changeX;
-  });
+  const pan = Gesture.Pan()
+    .onChange((e) => {
+      offsetY.value += e.changeX;
+    })
+    .onEnd((e) => {
+      offsetY.value = withSpring(snapPoint(offsetY.value), {
+        velocity: e.velocityX,
+      });
+    });
   const styles = useAnimatedStyle(() => {
     return {
       transform: [{ translateX: offsetY.value }],
@@ -57,6 +75,11 @@ function Toolbar() {
           <Sticker iconName="emoji-events" />
         </Animated.View>
       </GestureDetector>
+      <Icon
+        style={{ position: 'absolute', bottom: -30, left: -15 }}
+        name="expand-less"
+        size={30}
+      />
     </View>
   );
 }

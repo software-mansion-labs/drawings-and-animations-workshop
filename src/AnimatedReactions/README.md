@@ -1,17 +1,7 @@
-# Drawings, gestures, and animations workshop – App.js Conference 2022
+# Animated Reactions
 
-## Hosted by
-
-- William Candillon ([@wcandillon](https://twitter.com/wcandillon))
-- Krzysztof Magiera ([@kzzzf](https://twitter.com/kzzzf))
-
-## Prerequisites
-
-> TODO: simulator setup
-
-## Step 1 – Setup
-
-> TODO: link to EAS build and instructions how to install it + instructions on how to setup repo
+In this excercise we practice a few different ways of building on-click reactions using reanimated library.
+We explore basic principles of the library and dive into layout animations API as well as try out playing with physics.
 
 ## Step 2 – Animating things off the main thread
 

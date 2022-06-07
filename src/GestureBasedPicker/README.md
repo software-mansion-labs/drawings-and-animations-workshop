@@ -1,9 +1,7 @@
-# Drawings, gestures, and animations workshop – App.js Conference 2022
+# Gestrue-based Picker
 
-## Hosted by
-
-- William Candillon ([@wcandillon](https://twitter.com/wcandillon))
-- Krzysztof Magiera ([@kzzzf](https://twitter.com/kzzzf))
+In this excercise we build a gesture-based horizontal picker.
+Along the way of building it, we explore the new gesture-handler v2 library API in details.
 
 ## Step 1 - Building a toolbar
 
@@ -83,12 +81,19 @@ const pan = Gesture.Pan().onChange((e) => {
 });
 ```
 
+Finally, we need to configure our `GestureDetector` to process the defined pan gesture logic:
+
+```js
+<GestureDetector gesture={pan}>
+```
+
 </details></br>
 
-## Step 10 – Snapping
+## Step 2 – Snapping
 
 <details>
 <summary><b>[1]</b> Add an indicator outside of the sliding bar to point to the first icon (you can use “expand-less” icon for a chevron pointing up)</summary>
+
 </details></br>
 
 <details>
@@ -126,48 +131,6 @@ const pan = Gesture.Pan().onChange((e) => {
 <summary><b>[2]</b> Allow pan to activate after holding one of the icons for a while – use <code>manualActivation</code> for <code>LongPress</code> gesture to prevent it from activating prematurely (and cancelling pan) and move “growing” logic to <code>onBegin</code> callback</summary>
 </details></br>
 
-## Step 14 – Building canvas
+## Next step
 
-<details>
-<summary><b>[1]</b> Create a full-screen “canvas” component (just a View for now) and render one of the icon in it</summary>
-</details></br>
-
-<details>
-<summary><b>[2]</b> Add GestureDetector with pan gesture to it, such that you can move the icon around the canvas – use translateX and translateY + onChange event callback for the gesture</summary>
-</details></br>
-
-## Step 15 – Using matrices
-
-<details>
-<summary><b>[1]</b> Refactor movable component to use matrix – this will allow for more complex modifications in the future (check out hints for matrix math code)</summary>
-</details></br>
-
-## Step 16 – Scale and rotate
-
-<details>
-<summary><b>[1]</b> Add pinch and rotate gesture to control size and orientation of the icon</summary>
-</details></br>
-
-<details>
-<summary><b>[BONUS 1]</b> Add two-finger-pan gesture to rotate along X or Y axis (3D rotation)</summary>
-</details></br>
-
-## Step 17 – Items collection
-
-<details>
-<summary><b>[1]</b> Refactor canvas component to keep a list of items it shows</summary>
-</details></br>
-
-<details>
-<summary><b>[2]</b> Make icons from the toolbar add new items to the canvas on click (use tap gesture for that)</summary>
-</details></br>
-
-## Step 18 – Final Layout Animations touch
-
-<details>
-<summary><b>[1]</b> Add custom entering animation for the new items from canvas such that they slide in from the position on the toolbar (use reanimated’s measure method to get position and size of the button on toolbar and pass that to the method that adds new canvas items)</summary>
-</details></br>
-
-<details>
-<summary><b>[BONUS 1]</b> Make the slide-in animation go along some curve and not just along the straight path</summary>
-</details></br>
+**Go to [Drag and Drop (and Rotate, and Pinch)](../AllTheGestures)**

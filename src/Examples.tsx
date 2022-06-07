@@ -22,7 +22,7 @@ export const examples = [
   },
   {
     screen: 'AllTheGestures',
-    title: '😵‍💫 Drag and drop (and rotate and pinch)',
+    title: '😵‍💫 Drag and Drop (and Rotate, and Pinch)',
   },
   {
     screen: 'ReactLogo',
