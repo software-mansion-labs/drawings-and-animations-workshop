@@ -43,7 +43,7 @@ Follow one of the sections below for detailed instructions.
 
 1. Scan the QR code below with your iOS phone:
 
-![qrcode(2)](https://user-images.githubusercontent.com/726445/172497059-98c09c79-c55b-49f7-b63d-3b3c93841c51.png)
+![qrcode(4)](https://user-images.githubusercontent.com/726445/172498858-006a0e3e-b3a7-4c66-9825-2a7494959f08.png)
 
 2. Click "install" button on the website that the code opens, and confirm with "install" button on the dialog that pops up after that
 3. After app installation is completed navigate to "Settings" > "General" > "VPN & Device Management" section
@@ -62,6 +62,8 @@ Follow one of the sections below for detailed instructions.
 https://expo.dev/artifacts/eas/kaL8myvJwAJc6xSCSinbVT.apk
 
 1. Scan this QR code on your device:
+
+![qrcode(3)](https://user-images.githubusercontent.com/726445/172498765-5bcfcb5b-cd7e-4619-be24-30056f5dbc0e.png)
 
 2. Tap "install" button on the website that opens after scannig the code
 
