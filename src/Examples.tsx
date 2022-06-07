@@ -21,6 +21,10 @@ export const examples = [
     title: '🤌 Gesture-based Picker',
   },
   {
+    screen: 'AllTheGestures',
+    title: '😵‍💫 Drag and drop (and rotate and pinch)',
+  },
+  {
     screen: 'ReactLogo',
     title: '⚛️ React Logo',
   },

@@ -13,6 +13,7 @@ import { Drawings } from './src/Drawings';
 import { PhotoEditor } from './src/PhotoEditor';
 import { LoadAssets } from './src/components/LoadAssets';
 import { Stickers } from './src/Stickers';
+import { AllTheGestures } from './src/AllTheGestures';
 
 const Stack = createNativeStackNavigator<Routes>();
 const assets: number[] = [];
@@ -27,6 +28,7 @@ function App() {
           name="GestureBasedPicker"
           component={GestureBasedPicker}
         />
+        <Stack.Screen name="AllTheGestures" component={AllTheGestures} />
         <Stack.Screen name="SkiaLogo" component={SkiaLogo} />
         <Stack.Screen name="ReactLogo" component={ReactLogo} />
         <Stack.Screen name="ShapeMorphing" component={ShapeMorphing} />
