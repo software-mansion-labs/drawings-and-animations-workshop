@@ -1,66 +1,50 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import type { Transforms2d } from "@shopify/react-native-skia";
+import type { SkMatrix } from '@shopify/react-native-skia';
 import {
-  useTiming,
   Canvas,
   useImage,
   Image,
   useSharedValueEffect,
   useValue,
   Group,
-} from "@shopify/react-native-skia";
-import { Dimensions, View } from "react-native";
-import { GestureDetector, Gesture } from "react-native-gesture-handler";
-import { useSharedValue, withTiming } from "react-native-reanimated";
+} from '@shopify/react-native-skia';
+import { Dimensions, View } from 'react-native';
+import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+import { useSharedValue } from 'react-native-reanimated';
+import { createIdentityMatrix, scale3d, toSkMatrix } from './matrixMath';
 
-const zurich = require("../../assets/zurich.jpg");
-const { width, height } = Dimensions.get("window");
-//const center = vec(width / 2, height / 2);
+const zurich = require('../assets/zurich.jpg');
+const { width, height } = Dimensions.get('window');
 
 export const PinchToZoom = () => {
-  const focalX = useSharedValue(0);
-  const focalY = useSharedValue(0);
-  const scale = useSharedValue(1);
+  const matrix = useSharedValue(createIdentityMatrix());
 
-  const transform = useValue<Transforms2d>([]);
+  const skMatrix = useValue<SkMatrix>(toSkMatrix(createIdentityMatrix()));
 
-  const pinch = Gesture.Pinch()
-    .onStart((event) => {
-      focalX.value = event.focalX;
-      focalY.value = event.focalY;
-    })
-    .onChange((event) => {
-      scale.value = event.scale;
-    })
-    .onEnd(() => {
-      scale.value = withTiming(1);
-      focalX.value = withTiming(0);
-      focalY.value = withTiming(0);
-    });
-  const gesture = pinch;
+  const scale = Gesture.Pinch().onChange((e) => {
+    matrix.value = scale3d(
+      matrix.value,
+      e.scaleChange,
+      e.scaleChange,
+      1,
+      e.focalX,
+      e.focalY,
+      0
+    );
+  });
+
   const image = useImage(zurich);
-  useSharedValueEffect(
-    () => {
-      transform.current = [
-        { translateX: focalX.value },
-        { translateY: focalY.value },
-        { scale: scale.value },
-        { translateX: -focalX.value },
-        { translateY: -focalY.value },
-      ];
-    },
-    scale,
-    focalX,
-    focalY
-  );
+  useSharedValueEffect(() => {
+    skMatrix.current = toSkMatrix(matrix.value);
+  }, matrix);
   if (!image) {
     return null;
   }
   return (
     <View style={{ flex: 1 }}>
-      <GestureDetector gesture={gesture}>
+      <GestureDetector gesture={scale}>
         <Canvas style={{ flex: 1 }}>
-          <Group transform={transform}>
+          <Group matrix={skMatrix} transform={[]}>
             <Image
               x={0}
               y={0}
