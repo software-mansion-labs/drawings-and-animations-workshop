@@ -3,7 +3,7 @@
 In this excercise we practice a few different ways of building on-click reactions using reanimated library.
 We explore basic principles of the library and dive into layout animations API as well as try out playing with physics.
 
-## Step 2 – Animating things off the main thread
+## Step 1 – Animating things off the main thread
 
 <details>
 <summary><b>[1]</b> Create a “shared value” and animate view’s scale property when the view is tapped (use Pressable from react-native)
@@ -133,7 +133,7 @@ withTiming(1.5, { duration: 3000 });
 
 </details><br/>
 
-## Step 3 – Animating third-party components
+## Step 2 – Animating third-party components
 
 <details>
 <summary><b>[1]</b>  Use <code>@expo/vector-icons</code> package to replace <code>View</code> with an <code>Icon</code> component (e.g. use “favorite” icon from <code>MaterialIcons</code> sub-package)</summary>
@@ -200,7 +200,7 @@ return (
 
 </details><br/>
 
-## Step 4 – Dealing with component state
+## Step 3 – Dealing with component state
 
 <details>
 <summary><b>[1]</b> Introduce a binary state to your component (with <code>useState</code> from React) and make the button flip between the state</summary>
@@ -263,7 +263,7 @@ useAnimatedProps(() => {
 
 </details><br/>
 
-## Step 5 – Building on-click effects
+## Step 4 – Building on-click effects
 
 <details>
 <summary><b>[1]</b> Use <code>useAnimatedReaction</code> to monitor selected state change and run "bounce on tap" animation</summary>
@@ -290,7 +290,7 @@ You are fast, seems like you don't really need hints...
 
 </details></br>
 
-## Step 6 – Layout Animations API
+## Step 5 – Layout Animations API
 
 <details>
 <summary><b>[1]</b> Use entering animation (e.g. <a href="https://docs.swmansion.com/react-native-reanimated/docs/2.3.x/api/LayoutAnimations/entryAnimations/#bounce"><code>BounceIn</code></a>) along with “key” property to trigger enter animation on state change and replicate the previous effect</summary>
@@ -360,7 +360,7 @@ const BetterBounce = new Keyframe({
 
 </details></br>
 
-## Step 7 – Simple physics
+## Step 6 – Simple physics
 
 <details>
 <summary><b>[1]</b> Create a timeline shared value (use <code>withTiming</code> to launch timing animation when the component mounts + adjust timing props such that the variable changes in the same pace with the time)</summary>
@@ -437,7 +437,7 @@ withTiming(duration * 1000, {
 
 </details></br>
 
-## Step 8 – Explosion effect
+## Step 7 – Explosion effect
 
 <details>
 <summary><b>[1]</b> Use the animated version of the icon and create explosion effect that is triggered when user selects the icon (mount multiple instances of the animated icon with randomized velocity)</summary>
@@ -513,8 +513,6 @@ function Heart() {
   );
 }
 ```
-
-
 
 https://user-images.githubusercontent.com/726445/172389276-948462ea-41da-472e-baa9-f3fe0e46798f.mp4
 

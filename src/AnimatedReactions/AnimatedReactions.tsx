@@ -1,44 +1,36 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Icon from '@expo/vector-icons/MaterialIcons';
+import React from 'react';
 import Animated, {
-  Easing,
+  withTiming,
   useAnimatedStyle,
   useSharedValue,
-  withTiming,
 } from 'react-native-reanimated';
 import { CenterScreen } from '../components/CenterScreen';
+import { Pressable } from 'react-native';
 
-const AnimatedIcon = Animated.createAnimatedComponent(Icon);
-
-function FlyingHeart() {
-  const time = useSharedValue(0);
-  const vx = 30;
-  const vy = 50;
-  const g = 15;
-  const duration = 30;
+function Heart() {
+  const scale = useSharedValue(1);
   const styles = useAnimatedStyle(() => {
-    const t = time.value / 1000;
-    const x = vx * t;
-    const y = vy * t + (-g * t * t) / 2;
     return {
-      transform: [{ translateX: x }, { translateY: -y }],
+      transform: [{ scale: scale.value }],
     };
   });
-  useEffect(() => {
-    time.value = withTiming(duration * 1000, {
-      duration: (duration * 1000) / 5,
-      easing: Easing.linear,
-    });
-  }, []);
+
   return (
-    <AnimatedIcon name="favorite" size={50} color={'#ffaaa8'} style={styles} />
+    <Pressable
+      onPress={() => {
+        scale.value = withTiming(scale.value + 0.5);
+      }}>
+      <Animated.View
+        style={[{ width: 50, height: 50, backgroundColor: '#ffaaa8' }, styles]}
+      />
+    </Pressable>
   );
 }
 
 export function AnimatedReactions() {
   return (
     <CenterScreen>
-      <FlyingHeart />
+      <Heart />
     </CenterScreen>
   );
 }
