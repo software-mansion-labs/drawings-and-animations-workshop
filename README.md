@@ -45,17 +45,25 @@ Follow one of the sections below for detailed instructions.
 
 ![qrcode(2)](https://user-images.githubusercontent.com/726445/172497059-98c09c79-c55b-49f7-b63d-3b3c93841c51.png)
 
-2. Confirm when propted whether you want to install `appjs-workshop` app
-3. After installation is completed navigate to "Settings" > "General" > "VPN & Device Management" section
+2. Click "install" button on the website that the code opens, and confirm with "install" button on the dialog that pops up after that
+3. After app installation is completed navigate to "Settings" > "General" > "VPN & Device Management" section
 4. Tap "650 INDUSTRIES INC." record in the "ENTERPRISE APP" section
 5. Tap "Trust 650 INDUSTRIES INC." on the following page and confirm the selection when prompted
 6. Make sure you can now launch "appjs-workshop" app installed on your phone
 
 ### For Android emulator
 
-1. Download Development Client build [from this link](https://expo.dev/accounts/kmagiera/projects/appjs-workshop/builds/01fd8881-9d78-4687-be64-eb617c5dc429)
+1. Download Development Client build [from this link](https://expo.dev/artifacts/eas/kaL8myvJwAJc6xSCSinbVT.apk)
 2. Launch Android emulator on your computer
 3. Drag and drop the downloaded `.apk` file onto emulator
+
+### For Android device
+
+https://expo.dev/artifacts/eas/kaL8myvJwAJc6xSCSinbVT.apk
+
+1. Scan this QR code on your device:
+
+2. Tap "install" button on the website that opens after scannig the code
 
 ## Running the app
 
