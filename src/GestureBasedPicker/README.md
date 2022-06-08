@@ -5,6 +5,8 @@ Along the way of building it, we explore the new gesture-handler v2 library API 
 
 ## Step 1 - Building a toolbar
 
+![2 1 mp4](https://user-images.githubusercontent.com/726445/172513204-663a8c5e-1883-4fb1-bc24-6be3a73be06d.gif)
+
 <details>
 <summary><b>[1]</b> Add three more icons in a single row (use different icons, for example “grade”, “thumb-up”, “emoji-events”)</summary>
 
@@ -91,6 +93,8 @@ Finally, we need to configure our `GestureDetector` to process the defined pan g
 
 ## Step 2 – Snapping
 
+![2 2 mp4](https://user-images.githubusercontent.com/726445/172513221-0aa334c8-9162-47d1-9d84-e86ec8a55cce.gif)
+
 <details>
 <summary><b>[1]</b> Add an indicator outside of the sliding bar to point to the first icon (you can use “expand-less” icon for a chevron pointing up)</summary>
 
@@ -143,6 +147,8 @@ const pan = Gesture.Pan()
 </details></br>
 
 ## Step 3 – Moar physics
+
+![2 3 mp4](https://user-images.githubusercontent.com/726445/172513250-4375fbd7-95f5-4864-8306-b5aebc528520.gif)
 
 <details>
 <summary><b>[1]</b> Make fling gestures feel more natural by transfering the speed of the fling onto the snap animation</summary>
@@ -201,6 +207,8 @@ Note that friction should also be added when simulating "toss" as to avoid fast 
 
 ## Step 4 – Refactor to LongPress gesture
 
+![2 4 mp4](https://user-images.githubusercontent.com/726445/172513280-eca51c77-3fc1-40dd-9a50-0c21b6886016.gif)
+
 <details>
 <summary><b>[1]</b> Remove icon’s state and all effects added previously</summary>
 🙃 try not to use hints this often
@@ -254,6 +262,8 @@ function Sticker({ iconName, color }: { iconName: string, color: ColorValue }) {
 </details></br>
 
 ## Step 5 – Control gesture activation criteria
+
+![2 5 mp4](https://user-images.githubusercontent.com/726445/172513305-cdae0d44-7905-412d-aa8a-809bbd6fba4f.gif)
 
 <details>
 <summary><b>[1]</b> Note what happens to the bar swiping when long press gesture is active?</summary>
