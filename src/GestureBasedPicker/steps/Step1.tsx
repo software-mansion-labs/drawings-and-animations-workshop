@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Icon from '@expo/vector-icons/MaterialIcons';
+import React, { useEffect, useRef, useState } from "react";
+import Icon from "@expo/vector-icons/MaterialIcons";
 import Animated, {
   useAnimatedStyle,
   useSharedValue,
-} from 'react-native-reanimated';
-import { CenterScreen } from '../components/CenterScreen';
-import { Pressable, View } from 'react-native';
-import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+} from "react-native-reanimated";
+import { Pressable, View } from "react-native";
+import { GestureDetector, Gesture } from "react-native-gesture-handler";
+
+import { CenterScreen } from "../components/CenterScreen";
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
@@ -22,7 +23,7 @@ function Sticker({ iconName }: { iconName: string }) {
           key={selected ? 1 : 0}
           name={iconName}
           size={WIDTH}
-          color={selected ? '#ffaaa8' : '#aaa'}
+          color={selected ? "#ffaaa8" : "#aaa"}
         />
       </Pressable>
     </>
@@ -42,15 +43,17 @@ function Toolbar() {
   return (
     <View
       style={{
-        overflow: 'visible',
+        overflow: "visible",
         width: 0,
-      }}>
+      }}
+    >
       <GestureDetector gesture={pan}>
         <Animated.View
           style={[
-            { flexDirection: 'row', width: WIDTH * 4, marginLeft: -WIDTH / 2 },
+            { flexDirection: "row", width: WIDTH * 4, marginLeft: -WIDTH / 2 },
             styles,
-          ]}>
+          ]}
+        >
           <Sticker iconName="favorite" />
           <Sticker iconName="grade" />
           <Sticker iconName="thumb-up" />

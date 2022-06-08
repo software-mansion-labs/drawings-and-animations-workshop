@@ -1,6 +1,8 @@
-import React, { useState, useCallback, ReactNode } from 'react';
-import { ColorValue, View } from 'react-native';
-import Icon from '@expo/vector-icons/MaterialIcons';
+import type { ReactNode } from "react";
+import React, { useState, useCallback } from "react";
+import type { ColorValue } from "react-native";
+import { View } from "react-native";
+import Icon from "@expo/vector-icons/MaterialIcons";
 import Animated, {
   withTiming,
   useAnimatedStyle,
@@ -10,14 +12,15 @@ import Animated, {
   withDelay,
   runOnJS,
   measure,
-} from 'react-native-reanimated';
-import { Gesture, GestureDetector } from 'react-native-gesture-handler';
+} from "react-native-reanimated";
+import { Gesture, GestureDetector } from "react-native-gesture-handler";
+
 import {
   createIdentityMatrix,
   rotateZ,
   scale3d,
   translate3d,
-} from '../components/matrixMath';
+} from "../components/matrixMath";
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
@@ -37,7 +40,7 @@ function Sticker({
 }) {
   const iconRef = useAnimatedRef();
   function addItemFromUI() {
-    'worklet';
+    "worklet";
     const size = measure(iconRef);
     runOnJS(addItem)(iconName, color, {
       x: size.pageX,
@@ -83,7 +86,7 @@ function Sticker({
 const STICKERS_COUNT = 4;
 
 function snapPoint(x: number, vx: number) {
-  'worklet';
+  "worklet";
   const tossX = x + vx * 0.1; // simulate movement for 0.1 second
   const position = Math.max(
     -STICKERS_COUNT + 1,
@@ -111,15 +114,17 @@ function Toolbar({ addItem }: { addItem: AddItemCallback }) {
   return (
     <View
       style={{
-        overflow: 'visible',
+        overflow: "visible",
         width: 0,
-      }}>
+      }}
+    >
       <GestureDetector gesture={pan}>
         <Animated.View
           style={[
-            { flexDirection: 'row', width: WIDTH * 4, marginLeft: -WIDTH / 2 },
+            { flexDirection: "row", width: WIDTH * 4, marginLeft: -WIDTH / 2 },
             styles,
-          ]}>
+          ]}
+        >
           <Sticker iconName="favorite" color="#ffaaa8" addItem={addItem} />
           <Sticker iconName="grade" color="#001a72" addItem={addItem} />
           <Sticker iconName="thumb-up" color="#ffee86" addItem={addItem} />
@@ -127,7 +132,7 @@ function Toolbar({ addItem }: { addItem: AddItemCallback }) {
         </Animated.View>
       </GestureDetector>
       <Icon
-        style={{ position: 'absolute', bottom: -30, left: -15 }}
+        style={{ position: "absolute", bottom: -30, left: -15 }}
         name="expand-less"
         size={30}
       />
@@ -166,7 +171,7 @@ function Movable({ children }: { children: ReactNode }) {
   return (
     <GestureDetector gesture={Gesture.Simultaneous(rotate, scale, pan)}>
       <Animated.View>
-        <Animated.View style={[{ position: 'absolute' }, styles]}>
+        <Animated.View style={[{ position: "absolute" }, styles]}>
           {children}
         </Animated.View>
       </Animated.View>
@@ -176,7 +181,7 @@ function Movable({ children }: { children: ReactNode }) {
 
 function moveInFrom({ x, y, width, height }: Frame) {
   return (values) => {
-    'worklet';
+    "worklet";
     const startX =
       x - values.targetGlobalOriginX - (values.targetWidth - width) / 2;
     const startY =
@@ -210,17 +215,18 @@ export function AllTheGestures() {
   };
 
   return (
-    <View style={{ width: '100%', height: '100%' }}>
+    <View style={{ width: "100%", height: "100%" }}>
       {items.map((item, index) => (
         <Movable key={index}>{item}</Movable>
       ))}
       <View
         style={{
-          position: 'absolute',
+          position: "absolute",
           bottom: 50,
-          width: '100%',
-          alignItems: 'center',
-        }}>
+          width: "100%",
+          alignItems: "center",
+        }}
+      >
         <Toolbar addItem={addItem} />
       </View>
     </View>

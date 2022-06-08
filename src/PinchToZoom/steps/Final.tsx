@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import type { SkMatrix } from '@shopify/react-native-skia';
+import type { SkMatrix } from "@shopify/react-native-skia";
 import {
   Canvas,
   useImage,
@@ -7,14 +7,15 @@ import {
   useSharedValueEffect,
   useValue,
   Group,
-} from '@shopify/react-native-skia';
-import { Dimensions, View } from 'react-native';
-import { GestureDetector, Gesture } from 'react-native-gesture-handler';
-import { useSharedValue } from 'react-native-reanimated';
-import { createIdentityMatrix, scale3d, toSkMatrix } from './matrixMath';
+} from "@shopify/react-native-skia";
+import { Dimensions, View } from "react-native";
+import { GestureDetector, Gesture } from "react-native-gesture-handler";
+import { useSharedValue } from "react-native-reanimated";
 
-const zurich = require('../assets/zurich.jpg');
-const { width, height } = Dimensions.get('window');
+import { createIdentityMatrix, scale3d, toSkMatrix } from "./matrixMath";
+
+const zurich = require("../assets/zurich.jpg");
+const { width, height } = Dimensions.get("window");
 
 export const PinchToZoom = () => {
   const matrix = useSharedValue(createIdentityMatrix());

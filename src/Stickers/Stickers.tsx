@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import type { SkMatrix } from '@shopify/react-native-skia';
+import type { SkMatrix } from "@shopify/react-native-skia";
 import {
   Canvas,
   useImage,
@@ -7,9 +7,9 @@ import {
   useSharedValueEffect,
   useValue,
   Group,
-} from '@shopify/react-native-skia';
-import { Dimensions, View } from 'react-native';
-import { GestureDetector, Gesture } from 'react-native-gesture-handler';
+} from "@shopify/react-native-skia";
+import { Dimensions, View } from "react-native";
+import { GestureDetector, Gesture } from "react-native-gesture-handler";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -18,25 +18,27 @@ import Animated, {
   runOnJS,
   withTiming,
   withSpring,
-} from 'react-native-reanimated';
+} from "react-native-reanimated";
+import Icon from "@expo/vector-icons/MaterialIcons";
+import type { ReactNode } from "react";
+import { useCallback, useState } from "react";
+
 import {
   createIdentityMatrix,
   rotateZ,
   scale3d,
   toSkMatrix,
   translate3d,
-} from '../components/matrixMath';
-import Icon from '@expo/vector-icons/MaterialIcons';
-import { ReactNode, useCallback, useState } from 'react';
+} from "../components/matrixMath";
 
-const zurich = require('../assets/zurich.jpg');
-const { width, height } = Dimensions.get('window');
+const zurich = require("../assets/zurich.jpg");
+const { width, height } = Dimensions.get("window");
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
 function moveInFrom({ x, y, width, height }) {
   return (values) => {
-    'worklet';
+    "worklet";
     const startScale = width / values.targetWidth;
     const startX =
       x - values.targetGlobalOriginX - (values.targetWidth - width) / 2;
@@ -89,7 +91,7 @@ function Movable({ children }: { children: ReactNode }) {
   return (
     <GestureDetector gesture={Gesture.Simultaneous(rotate, scale, pan)}>
       <Animated.View>
-        <Animated.View style={[{ position: 'absolute' }, styles]} ref={ref}>
+        <Animated.View style={[{ position: "absolute" }, styles]} ref={ref}>
           {children}
         </Animated.View>
       </Animated.View>
@@ -97,13 +99,13 @@ function Movable({ children }: { children: ReactNode }) {
   );
 }
 
-function Tool({ icon = 'favorite', addItem }) {
+function Tool({ icon = "favorite", addItem }) {
   const [faved, setFaved] = useState(false);
   const iconRef = useAnimatedRef();
-  const color = faved ? '#900' : '#aaa';
+  const color = faved ? "#900" : "#aaa";
   const scale = useSharedValue(1);
   const addItemWorklet = () => {
-    'worklet';
+    "worklet";
     const size = measure(iconRef);
     runOnJS(addItem)(icon, {
       x: size.pageX,
@@ -143,13 +145,13 @@ const ICONS_COUNT = 4;
 const TOSS_TIME_SEC = 0.1;
 
 function snapPoint(x, vx) {
-  'worklet';
+  "worklet";
   x = x + vx * TOSS_TIME_SEC;
   const position = Math.max(
     -ICONS_COUNT + 1,
     Math.min(0, Math.round(x / WIDTH))
   );
-  console.log('POSITION', position);
+  console.log("POSITION", position);
   return position * WIDTH;
 }
 
@@ -175,21 +177,23 @@ function Toolbar({ addItem }) {
   return (
     <View
       style={{
-        overflow: 'visible',
-        position: 'absolute',
+        overflow: "visible",
+        position: "absolute",
         bottom: 50,
         width: 0,
-      }}>
+      }}
+    >
       <GestureDetector gesture={pan}>
         <Animated.View
           style={[
             {
-              flexDirection: 'row',
+              flexDirection: "row",
               width: WIDTH * ICONS_COUNT,
               marginLeft: -WIDTH / 2,
             },
             styles,
-          ]}>
+          ]}
+        >
           <Tool icon="favorite" addItem={addItem} />
           <Tool icon="grade" addItem={addItem} />
           <Tool icon="thumb-up" addItem={addItem} />
@@ -197,7 +201,7 @@ function Toolbar({ addItem }) {
         </Animated.View>
       </GestureDetector>
       <Icon
-        style={{ position: 'absolute', bottom: -20, left: -10 }}
+        style={{ position: "absolute", bottom: -20, left: -10 }}
         name="expand-less"
         size={20}
       />
@@ -262,19 +266,21 @@ export const Stickers = () => {
         </Canvas>
       </GestureDetector>
       <View
-        style={{ width: '100%', height: '100%', position: 'absolute' }}
-        pointerEvents="box-none">
+        style={{ width: "100%", height: "100%", position: "absolute" }}
+        pointerEvents="box-none"
+      >
         {items.map((item, index) => (
           <Movable key={index}>{item}</Movable>
         ))}
       </View>
       <View
         style={{
-          position: 'absolute',
+          position: "absolute",
           bottom: 0,
-          width: '100%',
-          alignItems: 'center',
-        }}>
+          width: "100%",
+          alignItems: "center",
+        }}
+      >
         <Toolbar addItem={addItem} />
       </View>
     </View>

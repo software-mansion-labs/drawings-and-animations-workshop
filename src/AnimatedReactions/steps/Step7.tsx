@@ -1,5 +1,5 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Icon from '@expo/vector-icons/MaterialIcons';
+import React, { useEffect, useRef, useState } from "react";
+import Icon from "@expo/vector-icons/MaterialIcons";
 import Animated, {
   BounceIn,
   Easing,
@@ -7,9 +7,10 @@ import Animated, {
   useSharedValue,
   withTiming,
   ZoomOut,
-} from 'react-native-reanimated';
-import { CenterScreen } from '../components/CenterScreen';
-import { Pressable } from 'react-native';
+} from "react-native-reanimated";
+import { Pressable } from "react-native";
+
+import { CenterScreen } from "../components/CenterScreen";
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
@@ -53,8 +54,8 @@ function FlyingHeart() {
     <AnimatedIcon
       name="favorite"
       size={50}
-      color={'#ffaaa8'}
-      style={[{ position: 'absolute' }, styles]}
+      color={"#ffaaa8"}
+      style={[{ position: "absolute" }, styles]}
     />
   );
 }
@@ -79,7 +80,7 @@ function Heart() {
           key={selected ? 1 : 0}
           name="favorite"
           size={50}
-          color={selected ? '#ffaaa8' : '#aaa'}
+          color={selected ? "#ffaaa8" : "#aaa"}
           exiting={ZoomOut}
           entering={BounceIn}
         />

@@ -1,4 +1,5 @@
-import { SkMatrix } from "@shopify/react-native-skia";
+/* eslint-disable prefer-destructuring */
+import type { SkMatrix } from "@shopify/react-native-skia";
 
 export type Affine3DMatrix = [
   number,
@@ -16,20 +17,20 @@ export type Affine3DMatrix = [
   number,
   number,
   number,
-  number,
+  number
 ];
 
 export function createIdentityMatrix(): Affine3DMatrix {
-  'worklet';
+  "worklet";
   return [1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1];
 }
 
 export function multiplyInto(
   out: Affine3DMatrix,
   a: Affine3DMatrix,
-  b: Affine3DMatrix,
+  b: Affine3DMatrix
 ) {
-  'worklet';
+  "worklet";
   const a00 = a[0],
     a01 = a[1],
     a02 = a[2],
@@ -88,9 +89,9 @@ export function translate3d(
   matrix: Affine3DMatrix,
   x: number,
   y: number,
-  z: number,
+  z: number
 ): Affine3DMatrix {
-  'worklet';
+  "worklet";
   const change = createIdentityMatrix();
   change[12] = x;
   change[13] = y;
@@ -104,9 +105,9 @@ export function rotateZ(
   radians: number,
   x: number,
   y: number,
-  z: number,
+  z: number
 ): Affine3DMatrix {
-  'worklet';
+  "worklet";
   const change = createIdentityMatrix();
   change[0] = Math.cos(radians);
   change[1] = Math.sin(radians);
@@ -128,9 +129,9 @@ export function scale3d(
   zScale: number,
   x: number,
   y: number,
-  z: number,
+  z: number
 ): Affine3DMatrix {
-  'worklet';
+  "worklet";
   const change = createIdentityMatrix();
   change[0] = xScale;
   change[5] = yScale;

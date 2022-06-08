@@ -2,5 +2,12 @@
   "extends": "eslint-config-react-native-wcandillon/tsconfig.base",
   "compilerOptions": {
     "noUncheckedIndexedAccess": false,
+    "noUnusedLocals": false /* Report errors on unused locals. */,
+    "noUnusedParameters": false /* Report errors on unused parameters. */,
+    "noImplicitReturns": false /* Report error when not all code paths in function return a value. */,
+    "noFallthroughCasesInSwitch": false /* Report errors for fallthrough cases in switch statement. */,
+    "allowUnreachableCode": true,
+    "allowUnusedLabels": true,
+    "noImplicitAny": false, /* Raise error on expressions and declarations with an implied 'any' type. */
   }
 }

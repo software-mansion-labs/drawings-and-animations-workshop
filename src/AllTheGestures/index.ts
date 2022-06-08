@@ -1,1 +1,1 @@
-export * from './AllTheGestures'
+export * from "./AllTheGestures";

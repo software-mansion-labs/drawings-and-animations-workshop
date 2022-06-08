@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
-import Icon from '@expo/vector-icons/MaterialIcons';
+import React, { useState } from "react";
+import Icon from "@expo/vector-icons/MaterialIcons";
 import Animated, {
   withTiming,
   useAnimatedStyle,
   useAnimatedProps,
-} from 'react-native-reanimated';
-import { CenterScreen } from '../components/CenterScreen';
-import { Pressable } from 'react-native';
+} from "react-native-reanimated";
+import { Pressable } from "react-native";
+
+import { CenterScreen } from "../components/CenterScreen";
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
@@ -21,7 +22,7 @@ function Heart() {
 
   const props = useAnimatedProps(() => {
     return {
-      color: withTiming(selected ? '#ffaaa8' : '#aaa'),
+      color: withTiming(selected ? "#ffaaa8" : "#aaa"),
     };
   });
 

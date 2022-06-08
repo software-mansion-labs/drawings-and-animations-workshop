@@ -1,12 +1,13 @@
-import React, { useEffect, useRef, useState } from 'react';
-import Icon from '@expo/vector-icons/MaterialIcons';
+import React, { useEffect, useRef, useState } from "react";
+import Icon from "@expo/vector-icons/MaterialIcons";
 import Animated, {
   Easing,
   useAnimatedStyle,
   useSharedValue,
   withTiming,
-} from 'react-native-reanimated';
-import { CenterScreen } from '../components/CenterScreen';
+} from "react-native-reanimated";
+
+import { CenterScreen } from "../components/CenterScreen";
 
 const AnimatedIcon = Animated.createAnimatedComponent(Icon);
 
@@ -31,7 +32,7 @@ function FlyingHeart() {
     });
   }, []);
   return (
-    <AnimatedIcon name="favorite" size={50} color={'#ffaaa8'} style={styles} />
+    <AnimatedIcon name="favorite" size={50} color={"#ffaaa8"} style={styles} />
   );
 }
 
