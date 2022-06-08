@@ -27,7 +27,7 @@ export const SkiaLogo = () => {
   );
 
   return (
-    <Canvas style={{ flex: 1 }}>
+    <Canvas style={{ flex: 1 }} mode="continuous">
       <Background />
       <FitBox
         src={rect(0, 0, 2139, 928)}
