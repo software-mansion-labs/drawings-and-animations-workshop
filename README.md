@@ -34,7 +34,7 @@ Follow one of the sections below for detailed instructions.
 
 ### For iOS simulator
 
-1. Download Development Client build [from this link](https://expo.dev/accounts/kmagiera/projects/appjs-workshop/builds/01fd8881-9d78-4687-be64-eb617c5dc429)
+1. Download Development Client build [from this link](https://expo.dev/artifacts/eas/wrhPiE1BYBuuSRbN89S6FM.tar.gz)
 2. Extract `appjsworkshop.app` file from the downloaded archive
 3. Launch your iOS simulator
 4. Drag and drop the `.app` file onto the simulator
@@ -43,7 +43,7 @@ Follow one of the sections below for detailed instructions.
 
 1. Scan the QR code below with your iOS phone:
 
-![qrcode(4)](https://user-images.githubusercontent.com/726445/172498858-006a0e3e-b3a7-4c66-9825-2a7494959f08.png)
+![https://expo.dev/accounts/kmagiera/projects/appjs-workshop/builds/eb4c78ce-0f05-4230-8784-0eef2fe27a69](https://user-images.githubusercontent.com/726445/172498858-006a0e3e-b3a7-4c66-9825-2a7494959f08.png)
 
 2. Click "install" button on the website that the code opens, and confirm with "install" button on the dialog that pops up after that
 3. After app installation is completed navigate to "Settings" > "General" > "VPN & Device Management" section
@@ -59,11 +59,9 @@ Follow one of the sections below for detailed instructions.
 
 ### For Android device
 
-https://expo.dev/artifacts/eas/kaL8myvJwAJc6xSCSinbVT.apk
-
 1. Scan this QR code on your device:
 
-![qrcode(3)](https://user-images.githubusercontent.com/726445/172498765-5bcfcb5b-cd7e-4619-be24-30056f5dbc0e.png)
+![https://expo.dev/accounts/kmagiera/projects/appjs-workshop/builds/9b3a85c7-a39a-4872-b392-e3b7fa8e173](https://user-images.githubusercontent.com/726445/172498765-5bcfcb5b-cd7e-4619-be24-30056f5dbc0e.png)
 
 2. Tap "install" button on the website that opens after scannig the code
 
