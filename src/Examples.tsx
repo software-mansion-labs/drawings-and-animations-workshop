@@ -1,67 +1,71 @@
-import * as React from "react";
+import * as React from 'react';
 import {
   ScrollView,
   StyleSheet,
   Text,
   TouchableHighlight,
   View,
-} from "react-native";
-import type { StackNavigationProp } from "@react-navigation/stack";
-import { useNavigation } from "@react-navigation/native";
+} from 'react-native';
+import type { StackNavigationProp } from '@react-navigation/stack';
+import { useNavigation } from '@react-navigation/native';
 
-import type { Routes } from "./Routes";
+import type { Routes } from './Routes';
 
 export const examples = [
   {
-    screen: "AnimatedReactions",
-    title: "😲 Animated Reactions",
+    screen: 'AnimatedReactions',
+    title: '😲 Animated Reactions',
   },
   {
-    screen: "GestureBasedPicker",
-    title: "🤌 Gesture-based Picker",
+    screen: 'GestureBasedPicker',
+    title: '🤌 Gesture-based Picker',
   },
   {
-    screen: "AllTheGestures",
-    title: "😵‍💫 Drag and Drop (and Rotate, and Pinch)",
+    screen: 'AllTheGestures',
+    title: '😵‍💫 Drag and Drop (and Rotate, and Pinch)',
   },
   {
-    screen: "ReactLogo",
-    title: "⚛️ React Logo",
+    screen: 'ReactLogo',
+    title: '⚛️ React Logo',
   },
   {
-    screen: "SkiaLogo",
-    title: "🎨 Skia Logo",
+    screen: 'SkiaLogo',
+    title: '🎨 Skia Logo',
   },
   {
-    screen: "PinchToZoom",
-    title: "🔍 Pinch to Zoom",
+    screen: 'PinchToZoom',
+    title: '🔍 Pinch to Zoom',
   },
   {
-    screen: "Drawings",
-    title: "🖌 Drawings",
+    screen: 'Drawings',
+    title: '🖌 Drawings',
   },
   {
-    screen: "PhotoEditor",
-    title: "📷 Photo Editor",
+    screen: 'PhotoEditor',
+    title: '📷 Photo Editor',
   },
   {
-    screen: "ShapeMorphing",
-    title: "☺️ Shape Morphing",
+    screen: 'ShapeMorphing',
+    title: '☺️ Shape Morphing',
+  },
+  {
+    screen: 'Stickers',
+    title: '🤳 Stickers',
   },
 ] as const;
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "#f2f2f2",
+    backgroundColor: '#f2f2f2',
   },
   content: {
     paddingBottom: 32,
   },
   thumbnail: {
-    backgroundColor: "white",
+    backgroundColor: 'white',
     padding: 16,
     borderBottomWidth: 1,
-    borderColor: "#f2f2f2",
+    borderColor: '#f2f2f2',
   },
   title: {
     fontSize: 17,
@@ -70,14 +74,13 @@ const styles = StyleSheet.create({
 });
 
 export const Examples = () => {
-  const { navigate } = useNavigation<StackNavigationProp<Routes, "Examples">>();
+  const { navigate } = useNavigation<StackNavigationProp<Routes, 'Examples'>>();
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       {examples.map((thumbnail) => (
         <TouchableHighlight
           key={thumbnail.screen}
-          onPress={() => navigate(thumbnail.screen)}
-        >
+          onPress={() => navigate(thumbnail.screen)}>
           <View style={styles.thumbnail}>
             <Text style={styles.title}>{thumbnail.title}</Text>
           </View>

@@ -1,5 +1,10 @@
 /* eslint-disable @typescript-eslint/no-var-requires */
-import type { SkMatrix } from "@shopify/react-native-skia";
+import {
+  Path,
+  Skia,
+  SkMatrix,
+  useTouchHandler,
+} from '@shopify/react-native-skia';
 import {
   Canvas,
   useImage,
@@ -7,9 +12,9 @@ import {
   useSharedValueEffect,
   useValue,
   Group,
-} from "@shopify/react-native-skia";
-import { Dimensions, View } from "react-native";
-import { GestureDetector, Gesture } from "react-native-gesture-handler";
+} from '@shopify/react-native-skia';
+import { Button, Dimensions, Pressable, View } from 'react-native';
+import { GestureDetector, Gesture } from 'react-native-gesture-handler';
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
@@ -18,10 +23,10 @@ import Animated, {
   runOnJS,
   withTiming,
   withSpring,
-} from "react-native-reanimated";
-import Icon from "@expo/vector-icons/MaterialIcons";
-import type { ReactNode } from "react";
-import { useCallback, useState } from "react";
+} from 'react-native-reanimated';
+import Icon from '@expo/vector-icons/MaterialIcons';
+import { cloneElement, ReactNode, useLayoutEffect, useState } from 'react';
+import * as ImagePicker from 'expo-image-picker';
 
 import {
   createIdentityMatrix,
@@ -29,35 +34,13 @@ import {
   scale3d,
   toSkMatrix,
   translate3d,
-} from "../components/matrixMath";
+} from '../components/matrixMath';
+import { ReactLogo } from './ReactLogo';
+import { SkiaLogo } from './SkiaLogo';
+import { AppjsLogo } from './AppjsLogo';
 
-const zurich = require("../assets/zurich.jpg");
-const { width, height } = Dimensions.get("window");
-
-const AnimatedIcon = Animated.createAnimatedComponent(Icon);
-
-function moveInFrom({ x, y, width, height }) {
-  return (values) => {
-    "worklet";
-    const startScale = width / values.targetWidth;
-    const startX =
-      x - values.targetGlobalOriginX - (values.targetWidth - width) / 2;
-    const startY =
-      y - values.targetGlobalOriginY - (values.targetHeight - height) / 2;
-    const config = { duration: 600 };
-    const animations = {
-      originX: withTiming(values.targetOriginX, config),
-      originY: withTiming(values.targetOriginY, config),
-      transform: [{ scale: withTiming(1, config) }],
-    };
-    const initialValues = {
-      originX: startX,
-      originY: startY,
-      transform: [{ scale: startScale }],
-    };
-    return { initialValues, animations };
-  };
-}
+const zurich = require('../assets/zurich.jpg');
+const { width, height } = Dimensions.get('window');
 
 function Movable({ children }: { children: ReactNode }) {
   const ref = useAnimatedRef();
@@ -91,7 +74,7 @@ function Movable({ children }: { children: ReactNode }) {
   return (
     <GestureDetector gesture={Gesture.Simultaneous(rotate, scale, pan)}>
       <Animated.View>
-        <Animated.View style={[{ position: "absolute" }, styles]} ref={ref}>
+        <Animated.View style={[{ position: 'absolute' }, styles]} ref={ref}>
           {children}
         </Animated.View>
       </Animated.View>
@@ -99,59 +82,30 @@ function Movable({ children }: { children: ReactNode }) {
   );
 }
 
-function Tool({ icon = "favorite", addItem }) {
-  const [faved, setFaved] = useState(false);
-  const iconRef = useAnimatedRef();
-  const color = faved ? "#900" : "#aaa";
-  const scale = useSharedValue(1);
-  const addItemWorklet = () => {
-    "worklet";
-    const size = measure(iconRef);
-    runOnJS(addItem)(icon, {
-      x: size.pageX,
-      y: size.pageY,
-      width: size.width,
-      height: size.height,
-    });
-  };
-  const tap = Gesture.Tap().onEnd(() => {
-    addItemWorklet();
-  });
-
-  const longPress = Gesture.LongPress()
-    .onStart(() => {
-      scale.value = withTiming(2, { duration: 2000 });
-    })
-    .onEnd(() => {
-      scale.value = withSpring(1);
-      // runOnJS(setFaved)(!faved);
-      addItemWorklet();
-    });
-  const styles = useAnimatedStyle(() => {
-    return {
-      transform: [{ scale: scale.value }],
-      color: withTiming(color),
-    };
-  });
+function PickerItem({ addItem, children }) {
   return (
-    <GestureDetector gesture={Gesture.Exclusive(tap, longPress)}>
-      <AnimatedIcon name={icon} size={30} style={styles} ref={iconRef} />
-    </GestureDetector>
+    <Pressable
+      onPress={() =>
+        addItem(cloneElement(children, { width: 200, height: 200 }))
+      }>
+      <View style={{ marginRight: 10 }}>{children}</View>
+    </Pressable>
   );
 }
 
-const WIDTH = 30;
-const ICONS_COUNT = 4;
+const WIDTH = 50;
+const ICONS_COUNT = 3;
 const TOSS_TIME_SEC = 0.1;
 
 function snapPoint(x, vx) {
-  "worklet";
+  'worklet';
+  const WIDTH = 50 + 10;
   x = x + vx * TOSS_TIME_SEC;
   const position = Math.max(
     -ICONS_COUNT + 1,
     Math.min(0, Math.round(x / WIDTH))
   );
-  console.log("POSITION", position);
+  console.log('POSITION', position);
   return position * WIDTH;
 }
 
@@ -177,31 +131,34 @@ function Toolbar({ addItem }) {
   return (
     <View
       style={{
-        overflow: "visible",
-        position: "absolute",
+        overflow: 'visible',
+        position: 'absolute',
         bottom: 50,
         width: 0,
-      }}
-    >
+      }}>
       <GestureDetector gesture={pan}>
         <Animated.View
           style={[
             {
-              flexDirection: "row",
+              flexDirection: 'row',
               width: WIDTH * ICONS_COUNT,
               marginLeft: -WIDTH / 2,
             },
             styles,
-          ]}
-        >
-          <Tool icon="favorite" addItem={addItem} />
-          <Tool icon="grade" addItem={addItem} />
-          <Tool icon="thumb-up" addItem={addItem} />
-          <Tool icon="emoji-events" addItem={addItem} />
+          ]}>
+          <PickerItem addItem={addItem}>
+            <ReactLogo width={WIDTH} height={WIDTH} />
+          </PickerItem>
+          <PickerItem addItem={addItem}>
+            <SkiaLogo width={WIDTH} height={WIDTH} />
+          </PickerItem>
+          <PickerItem addItem={addItem}>
+            <AppjsLogo width={WIDTH} height={WIDTH} />
+          </PickerItem>
         </Animated.View>
       </GestureDetector>
       <Icon
-        style={{ position: "absolute", bottom: -20, left: -10 }}
+        style={{ position: 'absolute', bottom: -20, left: -10 }}
         name="expand-less"
         size={20}
       />
@@ -209,78 +166,89 @@ function Toolbar({ addItem }) {
   );
 }
 
-export const Stickers = () => {
-  const [items, setItems] = useState([]);
-  const matrix = useSharedValue(createIdentityMatrix());
+export const Stickers = ({ navigation }) => {
+  const [items, setItems] = useState([] as ReactNode[]);
 
-  const addItem = useCallback(
-    (icon, frame) => {
-      setItems([
-        ...items,
-        <AnimatedIcon
-          name={icon}
-          color="#900"
-          size={150}
-          entering={moveInFrom(frame)}
-        />,
-      ]);
+  const addItem = (item: ReactNode) => {
+    setItems([...items, item]);
+  };
+
+  const path = useValue(Skia.Path.Make());
+  const onTouch = useTouchHandler({
+    onStart: ({ x, y }) => {
+      path.current.moveTo(x, y);
     },
-    [items]
-  );
-
-  const skMatrix = useValue<SkMatrix>(toSkMatrix(createIdentityMatrix()));
-
-  const scale = Gesture.Pinch().onChange((e) => {
-    matrix.value = scale3d(
-      matrix.value,
-      e.scaleChange,
-      e.scaleChange,
-      1,
-      e.focalX,
-      e.focalY,
-      0
-    );
+    onActive: ({ x, y }) => {
+      const lastPt = path.current.getLastPt();
+      const xMid = (lastPt.x + x) / 2;
+      const yMid = (lastPt.y + y) / 2;
+      path.current.quadTo(lastPt.x, lastPt.y, xMid, yMid);
+    },
   });
 
-  const image = useImage(zurich);
-  useSharedValueEffect(() => {
-    skMatrix.current = toSkMatrix(matrix.value);
-  }, matrix);
+  const [imageUri, setImage] = useState(null);
+
+  const pickImage = async () => {
+    // No permissions request is necessary for launching the image library
+    let result = await ImagePicker.launchImageLibraryAsync({
+      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      allowsEditing: true,
+      aspect: [4, 3],
+      quality: 1,
+    });
+
+    console.log(result);
+
+    if (!result.cancelled) {
+      setImage(result.uri);
+    }
+  };
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => <Button title="Photo" onPress={pickImage} />,
+    });
+  }, [navigation]);
+
+  const image = useImage(imageUri || zurich);
   if (!image) {
     return null;
   }
   return (
     <View style={{ flex: 1 }}>
-      <GestureDetector gesture={scale}>
-        <Canvas style={{ flex: 1 }}>
-          <Group matrix={skMatrix} transform={[]}>
-            <Image
-              x={0}
-              y={0}
-              width={width}
-              height={height}
-              image={image}
-              fit="cover"
-            />
-          </Group>
-        </Canvas>
-      </GestureDetector>
+      <Canvas style={{ flex: 1 }} onTouch={onTouch}>
+        <Image
+          x={0}
+          y={0}
+          width={width}
+          height={height}
+          image={image}
+          fit="cover"
+        />
+        <Path
+          path={path}
+          style="stroke"
+          strokeWidth={8}
+          color="lightblue"
+          strokeJoin="round"
+          strokeCap="round"
+        />
+      </Canvas>
       <View
-        style={{ width: "100%", height: "100%", position: "absolute" }}
-        pointerEvents="box-none"
-      >
+        style={{ width: '100%', height: '100%', position: 'absolute' }}
+        pointerEvents="box-none">
         {items.map((item, index) => (
           <Movable key={index}>{item}</Movable>
         ))}
       </View>
       <View
         style={{
-          position: "absolute",
+          position: 'absolute',
           bottom: 0,
-          width: "100%",
-          alignItems: "center",
-        }}
-      >
+          width: '100%',
+          height: 120,
+          alignItems: 'center',
+          backgroundColor: '#ffffff55',
+        }}>
         <Toolbar addItem={addItem} />
       </View>
     </View>
