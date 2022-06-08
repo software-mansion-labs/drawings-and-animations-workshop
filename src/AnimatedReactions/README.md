@@ -5,6 +5,8 @@ We explore basic principles of the library and dive into layout animations API a
 
 ## Step 1 – Animating things off the main thread
 
+![1 1 mp4](https://user-images.githubusercontent.com/726445/172512991-87a33e4c-7ed0-4fc4-97d0-e00e5792bf40.gif)
+
 <details>
 <summary><b>[1]</b> Create a “shared value” and animate view’s scale property when the view is tapped (use Pressable from react-native)
 </summary>
@@ -135,6 +137,8 @@ withTiming(1.5, { duration: 3000 });
 
 ## Step 2 – Animating third-party components
 
+![1 2 mp4](https://user-images.githubusercontent.com/726445/172513017-8766516e-2cdb-4ca5-a31d-e473e1551ca9.gif)
+
 <details>
 <summary><b>[1]</b>  Use <code>@expo/vector-icons</code> package to replace <code>View</code> with an <code>Icon</code> component (e.g. use “favorite” icon from <code>MaterialIcons</code> sub-package)</summary>
 
@@ -202,6 +206,8 @@ return (
 
 ## Step 3 – Dealing with component state
 
+![1 3 mp4](https://user-images.githubusercontent.com/726445/172513042-4969f0e2-eb9f-4954-bb13-74675bebebe1.gif)
+
 <details>
 <summary><b>[1]</b> Introduce a binary state to your component (with <code>useState</code> from React) and make the button flip between the state</summary>
 
@@ -265,6 +271,8 @@ useAnimatedProps(() => {
 
 ## Step 4 – Building on-click effects
 
+![1 4 mp4](https://user-images.githubusercontent.com/726445/172513071-f28a1692-0658-47bc-b1da-9b26cabc9c80.gif)
+  
 <details>
 <summary><b>[1]</b> Use <code>useAnimatedReaction</code> to monitor selected state change and run "bounce on tap" animation</summary>
 
@@ -291,6 +299,8 @@ You are fast, seems like you don't really need hints...
 </details></br>
 
 ## Step 5 – Layout Animations API
+
+![1 5 mp4](https://user-images.githubusercontent.com/726445/172513097-62d4f6be-7f92-4bab-b0f6-cdb24bf38302.gif)
 
 <details>
 <summary><b>[1]</b> Use entering animation (e.g. <a href="https://docs.swmansion.com/react-native-reanimated/docs/2.3.x/api/LayoutAnimations/entryAnimations/#bounce"><code>BounceIn</code></a>) along with “key” property to trigger enter animation on state change and replicate the previous effect</summary>
@@ -361,6 +371,8 @@ const BetterBounce = new Keyframe({
 </details></br>
 
 ## Step 6 – Simple physics
+
+![1 6 mp4](https://user-images.githubusercontent.com/726445/172513121-601222f8-ea46-4f75-bb68-e898f5594c95.gif)
 
 <details>
 <summary><b>[1]</b> Create a timeline shared value (use <code>withTiming</code> to launch timing animation when the component mounts + adjust timing props such that the variable changes in the same pace with the time)</summary>
@@ -438,6 +450,8 @@ withTiming(duration * 1000, {
 </details></br>
 
 ## Step 7 – Explosion effect
+
+![1 7 mp4](https://user-images.githubusercontent.com/726445/172513137-93600e25-c7f1-4bd7-8651-cd6a0fbc746e.gif)
 
 <details>
 <summary><b>[1]</b> Use the animated version of the icon and create explosion effect that is triggered when user selects the icon (mount multiple instances of the animated icon with randomized velocity)</summary>
