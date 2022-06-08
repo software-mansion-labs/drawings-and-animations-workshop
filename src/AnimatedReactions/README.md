@@ -331,7 +331,7 @@ This way we can force the icon to run enter animation on state change.
 
 </details></br>
 <details>
-<summary><b>[2]</b> Find exiting animation to make the disappearing version of the icon animate nicely</summary>
+<summary><b>[2]</b> Add exiting animation to make the disappearing version of the icon animate nicely</summary>
 
 There are many exiting animations to choose from ([full list here](https://docs.swmansion.com/react-native-reanimated/docs/api/LayoutAnimations/exitAnimations)).
 For this excercise we choose [`ZoomOut`](https://docs.swmansion.com/react-native-reanimated/docs/api/LayoutAnimations/exitAnimations#zoom) animation.
@@ -404,13 +404,13 @@ useEffect(() => {
 Use constant velocity motion along horizontal axis, below formula shows horizontal position as a function of time (`vx` is the velocity along x axis):
 
 ```
-x = vx * t
+x(t) = vx * t
 ```
 
 For vertical axis we simulate motion with constant acceleration (gravity). Below formula shows vertical position as a function of time (`vy` is the initial velocity along y axis and `g` is the gravity acceleration):
 
 ```
-y = vy * t + (-g * t * t) / 2;
+y(t) = vy * t + (-g * t * t) / 2;
 ```
 
 </summary>
