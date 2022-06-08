@@ -4,6 +4,8 @@ In this section we build a "canvas" canvas component, where stickers can be adde
 
 ## Step 1 – Building canvas
 
+![3 1 mp4](https://user-images.githubusercontent.com/726445/172513362-3f7dab44-fb09-4085-a558-71ba5515a237.gif)
+
 <details>
 <summary><b>[1]</b> Create a full-screen “canvas” component (just a View for now) and render one of the stickers in it</summary>
 
@@ -88,6 +90,8 @@ return (
 
 ## Step 2 – Using matrices
 
+![3 1 mp4](https://user-images.githubusercontent.com/726445/172513391-3487879c-bdf6-40cc-afe1-3d7a86c0c519.gif)
+
 <details>
 <summary><b>[1]</b> Refactor movable component to use matrix – this will allow for more complex modifications in the future (check out hints for matrix math code)</summary>
 
@@ -118,6 +122,8 @@ const pan = Gesture.Pan().onChange((e) => {
 </details></br>
 
 ## Step 3 – Scale and rotate
+
+![3 3 mp4](https://user-images.githubusercontent.com/726445/172513412-4b8c369f-7ef8-4eda-a326-f046027578d5.gif)
 
 <details>
 <summary><b>[1]</b> Add pinch and rotate gesture to control size and orientation of the icon</summary>
@@ -163,6 +169,8 @@ Note that with rotation, the event data contains an angle, while with two finger
 </details></br>
 
 ## Step 4 – Items collection
+
+![3 4 mp4](https://user-images.githubusercontent.com/726445/172513438-b1c399e8-b921-4970-853b-fdc93e27f246.gif)
 
 <details>
 <summary><b>[1]</b> Bring the picker component built in the previous excercise and render it at the bottom of the</summary>
@@ -305,6 +313,8 @@ const longPress = Gesture.Tap()
 </details></br>
 
 ## Step 5 – Final Layout Animations touch
+
+![3 5 mp4](https://user-images.githubusercontent.com/726445/172513465-5a1e3866-76c1-4694-a735-7b1666ea182e.gif)
 
 <details>
 <summary><b>[1]</b> Add <a href="https://docs.swmansion.com/react-native-reanimated/docs/next/api/LayoutAnimations/customAnimations#custom-entering-animation">custom entering animation</a> for the new items from canvas such that they slide in from the position on the toolbar (use previously measured dimensions to get the initial position for the animation)</summary>
