@@ -53,7 +53,15 @@ interface MouthProps {
 }
 
 export const Mouth = ({ progress }: MouthProps) => {
-  const path = useDerivedValue(() => normalPath, [progress]);
+  const path = useDerivedValue(
+    () =>
+      interpolatePaths(progress.current, inputRange, [
+        angryPath,
+        normalPath,
+        goodPath,
+      ]),
+    [progress]
+  );
   return (
     <Group
       transform={[

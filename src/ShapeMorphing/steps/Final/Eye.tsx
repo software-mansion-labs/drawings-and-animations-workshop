@@ -49,7 +49,15 @@ const c2 = getCenter(normalPath.computeTightBounds());
 const c3 = getCenter(angryPath.computeTightBounds());
 
 export const Eye = ({ flip, progress }: EyeProps) => {
-  const path = normalPath;
+  const path = useDerivedValue(
+    () =>
+      interpolatePaths(progress.current, inputRange, [
+        angryPath,
+        normalPath,
+        goodPath,
+      ]),
+    [progress]
+  );
   const c = useDerivedValue(
     () => interpolateVector(progress.current, inputRange, [c1, c2, c3]),
     [progress]
