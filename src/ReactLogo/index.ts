@@ -1,1 +1,1 @@
-export * from "./steps/Final";
+export * from "./ReactLogo";
