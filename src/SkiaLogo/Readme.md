@@ -33,7 +33,7 @@ The stroke can be updated via the `start` and `end` property.
 In the example below we trim the path 25% at the beginning and 25% at the end.
 
 ```jsx
-<Path path={path} start={0.25} end={0.25} style="stroke" strokeWidth={10} />
+<Path path={path} start={0.25} end={0.75} style="stroke" strokeWidth={10} />
 ```
 
 ## Bonus
